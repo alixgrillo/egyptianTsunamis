@@ -64,10 +64,16 @@ module.exports = function(app) {
       "&app_key=" +
       process.env.APP_KEY;
     apiCall(url, function(result) {
+      var categories = [];
       for (var i = 0; i < result.data.length; i++) {
         console.log(result.data[i].categoryID, result.data[i].categoryName);
+        var category = {
+          name: result.data[i].categoryName,
+          id: result.data[i].categoryID
+        };
+        categories.push(category);
       }
-      res.end();
+      res.json(categories);
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
