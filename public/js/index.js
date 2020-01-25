@@ -33,6 +33,12 @@ var API = {
       url: "api/categories",
       type: "GET"
     });
+  },
+  getCharitiesByCat: function(categoryID) {
+    return $.ajax({
+      url: "/api/organizations/" + categoryID,
+      type: "GET"
+    });
   }
 };
 
@@ -44,13 +50,68 @@ $(document).ready(function() {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       var $catButton = $("<button>")
-        .addClass("btn btn-light")
+        .addClass("btn btn-light category-btn")
         .text(data[i].name)
         .attr("id", data[i].id);
       $("#home").append($catButton);
     }
   });
 });
+
+$(document).on("click", ".category-btn", populateCharityCards);
+
+function populateCharityCards() {
+  var categoryID = $(this).attr("id");
+
+  API.getCharitiesByCat(categoryID).then(function(data) {
+    console.log(data);
+    for (var i = 0; i < 10; i++) {
+      var charityDiv = $("<div>").addClass("card");
+
+      var charityCard = $("<div>").addClass("card-body");
+
+      var charityLink = $("<a>")
+        .addClass("card-link")
+        .attr("href", data[i].charityURL)
+        .text("Website");
+
+      var charityNavLink = $("<a>")
+        .addClass("card-link")
+        .attr("href", data[i].charityNavigatorURL)
+        .text("Charity Navigator");
+
+      var saveMe = $("<a>")
+        .addClass("btn btn-primary")
+        .attr("href", "#")
+        .attr("id", data[i].ein)
+        .text("Follow this Charity");
+
+      var title = $("<h5>")
+        .addClass("card-title")
+        .text(data[i].name);
+
+      var tagline = $("<p>")
+        .addClass("card-text")
+        .text(data[i].tagLine);
+
+      var rating = $("<p>")
+        .addClass("card-text")
+        .text("Current Rating: ");
+
+      var ratingImg = $("<img>").attr("src", data[i].currentRatingImg);
+
+      charityCard.append(title);
+      charityCard.append(tagline);
+      rating.append(ratingImg);
+      charityCard.append(rating);
+      charityCard.append(charityLink);
+      charityCard.append(charityNavLink);
+      charityCard.append(saveMe);
+      charityDiv.append(charityCard);
+      $("#home").append(charityDiv);
+    }
+  });
+}
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {

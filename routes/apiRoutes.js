@@ -50,8 +50,22 @@ module.exports = function(app) {
       "&rated=true&categoryID=" +
       req.params.categoryId;
     apiCall(url, function(result) {
-      console.log(result.data);
-      res.end();
+      var charities = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var charity = {
+          charityNavigatorURL: result.data[i].charityNavigatorURL,
+          charityURL: result.data[i].websiteURL,
+          tagLine: result.data[i].tagLine,
+          name: result.data[i].charityName,
+          ein: result.data[i].ein,
+          currentRating: result.data[i].currentRating.rating,
+          currentRatingImg: result.data[i].currentRating.ratingImage.large,
+          country: result.data[i].mailingAddress.country,
+          state: result.data[i].mailingAddress.stateOrProvince
+        };
+        charities.push(charity);
+      }
+      res.json(charities);
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
