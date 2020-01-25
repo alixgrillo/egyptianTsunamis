@@ -28,7 +28,7 @@ var API = {
       type: "DELETE"
     });
   },
-  getCategories: function(){
+  getCategories: function() {
     return $.ajax({
       url: "api/categories",
       type: "GET"
@@ -40,7 +40,7 @@ var API = {
 // TO DO: this currently just loads buttons on document start - need to decide WHEN to load buttons and WHERE
 // to load them
 $(document).ready(function() {
-  API.getCategories().then(function(data){
+  API.getCategories().then(function(data) {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       var $catButton = $("<button>")
