@@ -1,16 +1,17 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "exampledb",
+    "password": "R2wwsi!!",
+    "database": "user_profile_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "travis",
+    "username": "root",
+    "password": null,
     "database": "testdb",
     "host": "localhost",
-    "dialect": "mysql2",
+    "dialect": "mysql",
     "logging": false
   },
   "production": {
