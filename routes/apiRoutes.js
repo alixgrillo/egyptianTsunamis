@@ -1,7 +1,7 @@
-var db = require("../models");
+//var db = require("../models");
 var axios = require("axios");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Get all examples
   // app.get("/api/examples", function (req, res) {
   //   db.Example.findAll({}).then(function (dbExamples) {
@@ -26,21 +26,22 @@ module.exports = function (app) {
   // });
 
   // api to get all organizations - will return up to 100 results
-  app.get("/api/organizations", function (req, res) {
+  app.get("/api/organizations", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations?app_id=" +
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY +
       "&rated=true";
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
   // api to get all organizations with category - will return up to 100 results
-  app.get("/api/organizations/:categoryId", function (req, res) {
+  app.get("/api/organizations/:categoryId", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations?app_id=" +
       process.env.APP_ID +
@@ -48,29 +49,31 @@ module.exports = function (app) {
       process.env.APP_KEY +
       "&rated=true&categoryID=" +
       req.params.categoryId;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
   // api to get all categories available in charity navigator
-  app.get("/api/categories", function (req, res) {
+  app.get("/api/categories", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Categories?app_id=" +
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       for (var i = 0; i < result.data.length; i++) {
         console.log(result.data[i].categoryID, result.data[i].categoryName);
       }
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
   // api to get all ratings associated with a charity's TaxID (EIN)
-  app.get("/api/ratings/:ein", function (req, res) {
+  app.get("/api/ratings/:ein", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations/" +
       req.params.ein +
@@ -78,15 +81,16 @@ module.exports = function (app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
   // api to get all ratings associated with a charity's TaxID (EIN) and Rating ID - this will return
   // info about costs and where they spend their money
-  app.get("/api/ratings/:ein/:id", function (req, res) {
+  app.get("/api/ratings/:ein/:id", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations/" +
       req.params.ein +
@@ -96,16 +100,16 @@ module.exports = function (app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(url);
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
-
   // api to get all advisories associated with a charity's EIN or TaxID
-  app.get("/api/advisories/:ein", function (req, res) {
+  app.get("/api/advisories/:ein", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations/" +
       req.params.ein +
@@ -113,14 +117,15 @@ module.exports = function (app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
 
   // api to get all advisories associated with a charity's EIN or TaxID based on a specific advisory id
-  app.get("/api/advisories/:ein/:id", function (req, res) {
+  app.get("/api/advisories/:ein/:id", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations/" +
       req.params.ein +
@@ -130,8 +135,9 @@ module.exports = function (app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    apiCall(url, function (result) {
+    apiCall(url, function(result) {
       console.log(result.data);
+      res.end();
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
@@ -139,10 +145,10 @@ module.exports = function (app) {
   function apiCall(url, cb) {
     axios
       .get(url)
-      .then(function (response) {
+      .then(function(response) {
         return cb(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
