@@ -27,8 +27,30 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
+  },
+  getCategories: function() {
+    return $.ajax({
+      url: "api/categories",
+      type: "GET"
+    });
   }
 };
+
+// function that returns all available categories that are in Charity Navigator and puts them in buttons
+// TO DO: this currently just loads buttons on document start - need to decide WHEN to load buttons and WHERE
+// to load them
+$(document).ready(function() {
+  API.getCategories().then(function(data) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+      var $catButton = $("<button>")
+        .addClass("btn btn-light")
+        .text(data[i].name)
+        .attr("id", data[i].id);
+      $("#home").append($catButton);
+    }
+  });
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
