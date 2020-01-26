@@ -1,4 +1,146 @@
-<div id="home">
+<body>
+    <div class="wrapper-main">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#" id="iconText">
+                <img src="../public/assets/images/charity.png" width="50" height="50" class="d-inline-block align-top" id="icon"
+                    alt="">
+                HopeLine
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item med active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item med">
+                        <a class="nav-link" id="btn-login" disabled="true" onclick="login()">Log in</a>
+                    </li>
+                    <li class="nav-item med">
+                        <a class="nav-link" id="btn-logout" disabled="true" onclick="logout()">Log Out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="med form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0 med" type="submit">Search Charities</button>
+                </form>
+            </div>
+        </nav>
+        <hr class="horz-line">
+
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="jumbotron">
+                <div class="container">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
+                </div>
+            </div>
+
+            <div class="browse-fdr-category">
+                <div class="dna-grid-container">
+                    <section class="dna-grid-row">
+
+                        <h1 class="browse-fdr-category-header dna-h2">Browse by fundraising category</h1>
+                        <br>
+                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Animals and pets" data-analytics-pagesection="categories">
+                            <i class="fa fa-paw"> Animals and Pets</i>
+                        </a>
+                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Art and culture" data-analytics-pagesection="categories">
+                            <i class="fa fa-paint-brush"> Arts and Culture</i>
+                        </a>
+                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Education" data-analytics-pagesection="categories">
+                            <i class="fa fa-graduation-cap"> Education</i>
+                        </a>
+                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue="International aid" data-analytics-pagesection="categories">
+                            <i class="fa fa-globe"> International Aid</i>
+                        </a>
+                </div>
+                <br>
+                <br>
+                <section class="dna-grid-row">
+                    <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
+                    </div>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
+                        <i class="fa fa-wheelchair"> Disability</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Local community" data-analytics-pagesection="categories">
+                        <i class="fa fa-home"> Local community</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Sports" data-analytics-pagesection="categories">
+                        <i class="fa fa-football-ball"> Sports</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
+                        <i class="fa fa-stethoscope"> Health and Medical</i>
+                    </a>
+            </div>
+        </section>
+
+        <div class="card-group">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                        content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{{!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -34,4 +176,4 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js"></script> --}}
