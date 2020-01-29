@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING
     },
-    email: {
+    googleId: {
       type: DataTypes.STRING
     }
   });
