@@ -41,6 +41,7 @@ hr {
   background-repeat: no-repeat;
   height: 600px;
   border-bottom: 3px solid gray;
+  position: relative;
 }
 
 #giveButton {
@@ -48,10 +49,12 @@ hr {
   border-color: lightseagreen;
   width: 20%;
   font-size: x-large;
-  margin-top: 34%;
+  /* margin-top: 34%; */
   border-radius: 25px;
   font-weight: bold;
   background-color: lightgray;
+  position: absolute;
+  bottom: 10%;
 }
 
 #giveButton:hover {
