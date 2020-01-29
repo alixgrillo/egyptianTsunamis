@@ -1,5 +1,6 @@
 //var db = require("../models");
 var axios = require("axios");
+// var User = require("../models.user.js");
 
 module.exports = function(app) {
   // Get all examples
