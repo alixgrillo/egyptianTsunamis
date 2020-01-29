@@ -1,7 +1,7 @@
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20");
-const keys = require("./keys");
-const User = require("../models/user");
+var passport = require("passport");
+var GoogleStrategy = require("passport-google-oauth20");
+var keys = require("./keys");
+var User = require("../models/user");
 
 passport.use(
     new GoogleStrategy({
