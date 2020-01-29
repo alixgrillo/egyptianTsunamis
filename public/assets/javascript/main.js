@@ -65,6 +65,12 @@ var API = {
       url: "/api/advisories/" + ein,
       type: "GET"
     });
+  },
+  getAllCharities: function() {
+    return $.ajax({
+      url: "/api/organizations/",
+      type: "GET"
+    });
   }
 };
 
@@ -92,6 +98,21 @@ var API = {
 //       $catButton.prepend(element);
 //       $(".categories").append($catButton);
 //     }
+//   });
+// });
+
+// $(document).ready(function() {
+//   API.getAllCharities().then(function(data) {
+//     console.log(data);
+
+//     // var allCharities = { charities: data };
+//     // $.handlebars({
+//     //   templatePath: "../../../views/",
+//     //   templateExtension: "hbs"
+//     // });
+//     // $("#charity-cards").render("index", {
+//     //   charities: allCharities
+//     // });
 //   });
 // });
 

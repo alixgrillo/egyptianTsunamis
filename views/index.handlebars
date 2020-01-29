@@ -1,13 +1,13 @@
 <body>
     <div class="wrapper-main">
 
-            <!-- Home Section -->
-            <section id="home">
-                <div class="jumbotron">
-                    <div class="container">
-                        <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
-                    </div>
+        <!-- Home Section -->
+        <section id="home">
+            <div class="jumbotron">
+                <div class="container">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
                 </div>
+            </div>
             <div class="browse-fdr-category">
                 <div class="dna-grid-container">
                     <section class="dna-grid-row categories">
@@ -15,8 +15,9 @@
                         <h1 class="browse-fdr-category-header dna-h2">Browse by fundraising category</h1>
                         <br>
                         {{#each categories}}
-                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue={{category}} data-analytics-pagesection="categories" id={{categoryID}}>
+                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="/category/{{categoryID}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue={{category}} data-analytics-pagesection="categories"
+                            id={{categoryID}}>
                             <i class="{{iconName}}""> {{category}}</i>
                         </a>    
                         {{/each}}
@@ -42,10 +43,11 @@
                 </div>
                 <br>
                 <br>
-                <section class="dna-grid-row">
-                    <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
-                    </div>
-                    {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                <section class=" dna-grid-row">
+                                <div
+                                    class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
+                                </div>
+                                {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                         data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
                         <i class="fa fa-wheelchair"> Disability</i>
                     </a>
@@ -61,61 +63,87 @@
                         data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
                         <i class="fa fa-stethoscope"> Health and Medical</i>
                     </a> --}}
-            </div>
+                </div>
         </section>
 
 
-            <div class="card-group">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="card-group">
+            {{#each charities}}
+            <div class="card" id="charity-cards">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5 class="card-title">{{name}}</h5>
+                        </div>
+                        <div class="col-lg-3">
+                            <a class="more-info" href=""
+                                data-analytics-subtype="button" data-analytics-eventvalue="Get More Information"
+                                data-analytics-pagesection="categories" id="{{ein}}">
+                                <i class="fa fa-info"></i>
+                            </a>
+                        </div>
+
                     </div>
+                    <p class="card-text">{{tagLine}}</p>
+                    <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+
                 </div>
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                            content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
+            </div>
+            {{/each}}
+        </div>
+
+
+
+        <!-- <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This card has even longer content than the first to show that equal
-                            height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                        content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This card has even longer content than the first to show that equal
-                            height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This card has even longer content than the first to show that equal
-                            height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal
+                        height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
         </div>
+    </div> -->
 
 </body>
 
@@ -157,4 +185,3 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="/js/index.js"></script> -->
-
