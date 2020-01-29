@@ -41,8 +41,35 @@ module.exports = function(app) {
     });
   });
 
+  // api to get all organizations - will return up to 100 results
+  app.get("/api/organizations/:ein", function(req, res) {
+    var url =
+      "https://api.data.charitynavigator.org/v2/Organizations/" +
+      req.params.ein +
+      "?app_id=" +
+      process.env.APP_ID +
+      "&app_key=" +
+      process.env.APP_KEY;
+    console.log(url + "line 52");
+    apiCall(url, function(result) {
+      var charity = {
+        charityNavigatorURL: result.data.charityNavigatorURL,
+        charityURL: result.data.websiteURL,
+        tagLine: result.data.tagLine,
+        name: result.data.charityName,
+        ein: result.data.ein,
+        currentRating: result.data.currentRating.rating,
+        currentRatingImg: result.data.currentRating.ratingImage.large,
+        country: result.data.mailingAddress.country,
+        state: result.data.mailingAddress.stateOrProvince
+      };
+      res.json(charity);
+      // ENTER ANY FUNCTION TO DO SOMETHING HERE
+    });
+  });
+
   // api to get all organizations with category - will return up to 100 results
-  app.get("/api/organizations/:categoryId", function(req, res) {
+  app.get("/api/organizations/category/:categoryId", function(req, res) {
     var url =
       "https://api.data.charitynavigator.org/v2/Organizations?app_id=" +
       process.env.APP_ID +
@@ -50,6 +77,7 @@ module.exports = function(app) {
       process.env.APP_KEY +
       "&rated=true&categoryID=" +
       req.params.categoryId;
+    console.log(url);
     apiCall(url, function(result) {
       var charities = [];
       for (var i = 0; i < result.data.length; i++) {
@@ -103,8 +131,14 @@ module.exports = function(app) {
       "&app_key=" +
       process.env.APP_KEY;
     apiCall(url, function(result) {
-      console.log(result.data);
-      res.end();
+      var charities = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var charity = {
+          ratingId: result.data[i].ratingID
+        };
+        charities.push(charity);
+      }
+      res.json(charities);
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
@@ -121,10 +155,23 @@ module.exports = function(app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
+    console.log(url + " on line 157");
     apiCall(url, function(result) {
-      console.log(url);
-      console.log(result.data);
-      res.end();
+      var rating = {
+        ratingId: result.data.ratingId,
+        publicationDate: result.data.publicationDate,
+        fundraisingExpenses: result.data.form990.fundraisingExpenses,
+        administrativeExpenses: result.data.form990.administrativeExpenses,
+        programExpenses: result.data.form990.programExpenses,
+        totalExpenses: result.data.form990.totalExpenses,
+        totalRevenue: result.data.form990.totalRevenue,
+        totalExpenses: result.data.form990.totalExpenses,
+        totalContributions: result.data.form990.totalContributions,
+        totalNetAssets: result.data.form990.totalNetAssets,
+        primaryRevenue: result.data.form990.primaryRevenue,
+        otherRevenue: result.data.form990.otherRevenue
+      };
+      res.json(rating);
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });
@@ -139,8 +186,16 @@ module.exports = function(app) {
       "&app_key=" +
       process.env.APP_KEY;
     apiCall(url, function(result) {
-      console.log(result.data);
-      res.end();
+      var advisories = [];
+      for (var i = 0; i < result.data.length; i++) {
+        var advisory = {
+          severity: result.data[i].severity,
+          datePublished: result.data[i].datePublished,
+          sources: result.data[i].sources
+        };
+        advisories.push(advisory);
+      }
+      res.json(advisories);
       // ENTER ANY FUNCTION TO DO SOMETHING HERE
     });
   });

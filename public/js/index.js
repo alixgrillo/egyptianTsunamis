@@ -1,3 +1,5 @@
+//var Chart = require("chart.js");
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -36,7 +38,31 @@ var API = {
   },
   getCharitiesByCat: function(categoryID) {
     return $.ajax({
-      url: "/api/organizations/" + categoryID,
+      url: "/api/organizations/category/" + categoryID,
+      type: "GET"
+    });
+  },
+  getSingleCharities: function(ein) {
+    return $.ajax({
+      url: "/api/organizations/" + ein,
+      type: "GET"
+    });
+  },
+  getRatingsId: function(ein) {
+    return $.ajax({
+      url: "/api/ratings/" + ein,
+      type: "GET"
+    });
+  },
+  getRatingsInfo: function(ein, ratingId) {
+    return $.ajax({
+      url: "/api/ratings/" + ein + "/" + ratingId,
+      type: "GET"
+    });
+  },
+  getAdvisories: function(ein) {
+    return $.ajax({
+      url: "/api/advisories/" + ein,
       type: "GET"
     });
   }
@@ -64,7 +90,6 @@ function populateCharityCards() {
   var categoryID = $(this).attr("id");
 
   API.getCharitiesByCat(categoryID).then(function(data) {
-    console.log(data);
     for (var i = 0; i < 10; i++) {
       var charityDiv = $("<div>").addClass("card");
 
@@ -80,11 +105,15 @@ function populateCharityCards() {
         .attr("href", data[i].charityNavigatorURL)
         .text("Charity Navigator");
 
-      var saveMe = $("<a>")
-        .addClass("btn btn-primary")
-        .attr("href", "#")
+      var saveMe = $("<button>")
+        .addClass("btn btn-primary saveMe")
         .attr("id", data[i].ein)
         .text("Follow this Charity");
+
+      var moreInfo = $("<button>")
+        .addClass("btn btn-primary moreInfo")
+        .attr("id", data[i].ein)
+        .text("More Information");
 
       var title = $("<h5>")
         .addClass("card-title")
@@ -107,9 +136,122 @@ function populateCharityCards() {
       charityCard.append(charityLink);
       charityCard.append(charityNavLink);
       charityCard.append(saveMe);
+      charityCard.append(moreInfo);
       charityDiv.append(charityCard);
       $("#home").append(charityDiv);
     }
+  });
+}
+
+$(document).on("click", ".moreInfo", populateCharityInfoDiv);
+
+function populateCharityInfoDiv() {
+  console.log("more info button being pushed");
+  var ein = $(this).attr("id");
+  console.log(ein);
+
+  API.getSingleCharities(ein).then(function(charityData) {
+    console.log("\n----------- Charity Info----\n");
+    console.log(charityData);
+    API.getRatingsId(ein).then(function(rating) {
+      console.log("\n----------- rating Info----\n");
+      console.log(rating);
+      API.getRatingsInfo(ein, rating[0].ratingId).then(function(ratingData) {
+        console.log("\n----------- ratingsub Info----\n");
+        console.log(ratingData);
+        API.getAdvisories(ein).then(function(advisoryData) {
+          console.log("\n----------- advisory Info----\n");
+          console.log(advisoryData);
+          //var charityDiv = $("<div>").addClass("card");
+          var charityDiv = $("#singleCharityInfo");
+
+          var charityCard = $("<div>").addClass("card-body");
+
+          var charityLink = $("<a>")
+            .addClass("card-link")
+            .attr("href", charityData.charityURL)
+            .text("Website");
+
+          var charityNavLink = $("<a>")
+            .addClass("card-link")
+            .attr("href", charityData.charityNavigatorURL)
+            .text("Charity Navigator");
+
+          var saveMe = $("<a>")
+            .addClass("btn btn-primary")
+            .attr("href", "#")
+            .attr("id", charityData.ein)
+            .text("Follow this Charity");
+
+          var title = $("<h5>")
+            .addClass("card-title")
+            .text(charityData.name);
+
+          var tagline = $("<p>")
+            .addClass("card-text")
+            .text(charityData.tagLine);
+
+          var rating = $("<p>")
+            .addClass("card-text")
+            .text("Current Rating: ");
+
+          var ratingImg = $("<img>").attr("src", charityData.currentRatingImg);
+
+          var location = $("<p>")
+            .addClass("card-text")
+            .text(
+              "Location: " +
+                charityData.stateOrProvince +
+                ", " +
+                charityData.country
+            );
+
+          //var expensesDiv = $("<canvas></canvas>").attr("id", "expenses");
+          //charityCard.append(expensesDiv);
+
+          var ctx = $("#expenses");
+
+          var data = {
+            datasets: [
+              {
+                data: [
+                  ratingData.fundraisingExpenses,
+                  ratingData.administrativeExpenses,
+                  ratingData.programExpenses
+                ],
+                backgroundColor: [
+                  "rgb(255, 0, 0)",
+                  "	rgb(0, 0, 255)",
+                  "rgb(255, 255, 0)"
+                ]
+              }
+            ],
+            labels: [
+              "Fundraising Expenses",
+              "Administrative Expenses",
+              "Program Expenses"
+            ]
+          };
+
+          var chart = new Chart(ctx, {
+            type: "doughnut",
+            data: data
+          });
+
+          charityCard.append(title);
+          charityCard.append(tagline);
+          rating.append(ratingImg);
+          charityCard.append(rating);
+          charityCard.append(location);
+          charityCard.append(chart);
+          charityCard.append(charityLink);
+          charityCard.append(charityNavLink);
+          charityCard.append(saveMe);
+          charityDiv.append(charityCard);
+          //$("#home").append(charityDiv);
+        });
+      });
+    });
   });
 }
 
