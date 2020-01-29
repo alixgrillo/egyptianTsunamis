@@ -1,6 +1,17 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  // get "/" for select all
+  app.get("/", function(req, res) {
+    db.Category.findAll({}).then(function(result) {
+      var catObj = {
+        categories: result
+      };
+      console.log(catObj);
+      res.render("index", catObj);
+    });
+  });
+
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {

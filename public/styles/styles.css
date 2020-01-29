@@ -70,6 +70,7 @@ margin: 20px;
 .fa {
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 30px;
 }
 
 .dna-grid-row {
@@ -79,9 +80,7 @@ margin: 20px;
 
 .card-group {
   margin-top: 30px;
-<<<<<<< authentication
 }
-
 /* oauth */
 body{
   font-family: arial;
@@ -160,6 +159,4 @@ main,header{
   color: black;
   text-decoration: none;
   cursor: pointer;
-=======
->>>>>>> master
 }

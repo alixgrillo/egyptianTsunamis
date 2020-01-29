@@ -75,11 +75,21 @@ $(document).ready(function() {
   API.getCategories().then(function(data) {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
-      var $catButton = $("<button>")
-        .addClass("btn btn-light category-btn")
-        .text(data[i].name)
-        .attr("id", data[i].id);
-      $("#home").append($catButton);
+      // var $catButton = $("<button>")
+      //   .addClass("btn btn-light category-btn")
+      //   .text(data[i].name)
+      //   .attr("id", data[i].id);
+      // $("#home").append($catButton);
+      var $catButton = $("<a>")
+        .addClass("dna-grid-col-l-3 category-wrapper fundingTag")
+        .attr("href", "")
+        .data("analytics-subtype", "button")
+        .data("analytics-eventvalue", data[i].name)
+        .data("analytics-pagesection", "categories")
+        .attr("id", data[i].id)
+        .append("<i class='fa fa-paw'</i>")
+        .text(data[i].name);
+      $(".categories").append($catButton);
     }
   });
 });

@@ -8,43 +8,23 @@
                         <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
                     </div>
                 </div>
+            <div class="browse-fdr-category">
+                <div class="dna-grid-container">
+                    <section class="dna-grid-row categories">
 
-                <div class="browse-fdr-category">
-                    <div class="dna-grid-container">
-                        <section class="dna-grid-row">
-
-                            <h1 class="browse-fdr-category-header dna-h2">Browse by fundraising category</h1>
-                            <br>
-                            <a class="dna-grid-col-l-3 category-wrapper fundingTag" href=""
-                                data-analytics-subtype="button" data-analytics-eventvalue="Animals and pets"
-                                data-analytics-pagesection="categories">
-                                <i class="fa fa-paw"> Animals and Pets</i>
-                            </a>
-                            <a class="dna-grid-col-l-3 category-wrapper fundingTag" href=""
-                                data-analytics-subtype="button" data-analytics-eventvalue="Art and culture"
-                                data-analytics-pagesection="categories">
-                                <i class="fa fa-paint-brush"> Arts and Culture</i>
-                            </a>
-                            <a class="dna-grid-col-l-3 category-wrapper fundingTag" href=""
-                                data-analytics-subtype="button" data-analytics-eventvalue="Education"
-                                data-analytics-pagesection="categories">
-                                <i class="fa fa-graduation-cap"> Education</i>
-                            </a>
-                            <a class="dna-grid-col-l-3 category-wrapper fundingTag" href=""
-                                data-analytics-subtype="button" data-analytics-eventvalue="International aid"
-                                data-analytics-pagesection="categories">
-                                <i class="fa fa-globe"> International Aid</i>
-                            </a>
-                    </div>
-                    <br>
-                    <br>
-                    <section class="dna-grid-row">
-                        <div
-                            class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
-                        </div>
+                        <h1 class="browse-fdr-category-header dna-h2">Browse by fundraising category</h1>
+                        <br>
+                        {{#each categories}}
                         <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
-                            <i class="fa fa-wheelchair"> Disability</i>
+                            data-analytics-eventvalue={{category}} data-analytics-pagesection="categories" id={{categoryID}}>
+                            <i class="{{iconName}}""> {{category}}</i>
+                        </a>    
+                        {{/each}}
+                        
+                        {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Animals and pets" data-analytics-pagesection="categories">
+                            <i class="fa fa-paw"> Animals and Pets</i>
+
                         </a>
                         <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                             data-analytics-eventvalue="Local community" data-analytics-pagesection="categories">
@@ -55,11 +35,35 @@
                             <i class="fa fa-football-ball"> Sports</i>
                         </a>
                         <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
-                            <i class="fa fa-stethoscope"> Health and Medical</i>
-                        </a>
+
+                            data-analytics-eventvalue="International aid" data-analytics-pagesection="categories">
+                            <i class="fa fa-globe"> International Aid</i>
+                        </a> --}}
                 </div>
-            </section>
+                <br>
+                <br>
+                <section class="dna-grid-row">
+                    <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
+                    </div>
+                    {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
+                        <i class="fa fa-wheelchair"> Disability</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Local community" data-analytics-pagesection="categories">
+                        <i class="fa fa-home"> Local community</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Sports" data-analytics-pagesection="categories">
+                        <i class="fa fa-football-ball"> Sports</i>
+                    </a>
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                        data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
+                        <i class="fa fa-stethoscope"> Health and Medical</i>
+                    </a> --}}
+            </div>
+        </section>
+
 
             <div class="card-group">
                 <div class="card">
@@ -115,7 +119,7 @@
 
 </body>
 
-{{!-- <div id="home">
+<!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -152,5 +156,5 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="/js/index.js"></script> 
+<script src="/js/index.js"></script> -->
 
