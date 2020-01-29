@@ -42,11 +42,18 @@
 
             <div class="browse-fdr-category">
                 <div class="dna-grid-container">
-                    <section class="dna-grid-row">
+                    <section class="dna-grid-row categories">
 
                         <h1 class="browse-fdr-category-header dna-h2">Browse by fundraising category</h1>
                         <br>
+                        {{#each categories}}
                         <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                            data-analytics-eventvalue={{category}} data-analytics-pagesection="categories" id={{categoryID}}>
+                            <i class="{{iconName}}""> {{category}}</i>
+                        </a>    
+                        {{/each}}
+                        
+                        {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                             data-analytics-eventvalue="Animals and pets" data-analytics-pagesection="categories">
                             <i class="fa fa-paw"> Animals and Pets</i>
                         </a>
@@ -61,14 +68,14 @@
                         <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                             data-analytics-eventvalue="International aid" data-analytics-pagesection="categories">
                             <i class="fa fa-globe"> International Aid</i>
-                        </a>
+                        </a> --}}
                 </div>
                 <br>
                 <br>
                 <section class="dna-grid-row">
                     <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
                     </div>
-                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
+                    {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                         data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
                         <i class="fa fa-wheelchair"> Disability</i>
                     </a>
@@ -83,7 +90,7 @@
                     <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
                         data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
                         <i class="fa fa-stethoscope"> Health and Medical</i>
-                    </a>
+                    </a> --}}
             </div>
         </section>
 
