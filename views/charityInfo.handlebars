@@ -1,0 +1,95 @@
+<body>
+    <div class="wrapper-main">
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="jumbotron">
+                <div class="container">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
+                </div>
+            </div>
+            <div class="container">
+                <h1 class="browse-fdr-category-header dna-h2">{{charityName}}</h1>
+                <div class="row">
+                    <h2>{{tagLine}}</h2><br>
+                    <p>Mission: {{mission}}</p><br>
+                    <p>Located at: {{city}}, {{state}}</p><br>
+                    <p>Current Rating: {{currentRating}} <img src="{{ratingImg}}" alt="rating-image"></p><br>
+                    <p>Current Score: {{currentScore}}</p><br>
+
+                </div>
+                <canvas id="expenses"></canvas>
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <div class="card-group">
+        {{#each charities}}
+        <div class="card" id="charity-cards">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h5 class="card-title">{{name}}</h5>
+                    </div>
+                    <div class="col-lg-3">
+                        <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
+                            id="{{ein}}">
+                            <i class="fa fa-info"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <p class="card-text">{{tagLine}}</p>
+                <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+
+
+
+</body>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+
+
+    var ctx = $("#expenses");
+
+    var data = {
+        datasets: [
+            {
+                data: [
+                    {{ fundraisingExpenses }},
+            {{ administrativeExpenses }},
+        {{ programExpenses }}
+                ],
+    backgroundColor: [
+        "rgb(255, 0, 0)",
+        "	rgb(0, 0, 255)",
+        "rgb(255, 255, 0)"
+    ]
+              }
+            ],
+    labels: [
+        "Fundraising Expenses",
+        "Administrative Expenses",
+        "Program Expenses"
+    ]
+          };
+
+    var chart = new Chart(ctx, {
+        type: "doughnut",
+        data: data
+    });
+
+    $("#expenses").append(chart);
+
+</script>
