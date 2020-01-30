@@ -73,6 +73,88 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/charity/:ein", function(req, res) {
+    var urlOneCharity =
+      "https://api.data.charitynavigator.org/v2/Organizations/" +
+      req.params.ein +
+      "?app_id=" +
+      process.env.APP_ID +
+      "&app_key=" +
+      process.env.APP_KEY;
+
+    var urlAllRatings =
+      "https://api.data.charitynavigator.org/v2/Organizations/" +
+      req.params.ein +
+      "/Ratings?app_id=" +
+      process.env.APP_ID +
+      "&app_key=" +
+      process.env.APP_KEY;
+
+    var urlAllAdvisories =
+      "https://api.data.charitynavigator.org/v2/Organizations/" +
+      req.params.ein +
+      "/Advisories/?app_id=" +
+      process.env.APP_ID +
+      "&app_key=" +
+      process.env.APP_KEY;
+
+    apiCall(urlOneCharity, function(charityData) {
+      apiCall(urlAllRatings, function(rating) {
+        var urlOneRating =
+          "https://api.data.charitynavigator.org/v2/Organizations/" +
+          req.params.ein +
+          "/Ratings/" +
+          rating.data[0].ratingID +
+          "?app_id=" +
+          process.env.APP_ID +
+          "&app_key=" +
+          process.env.APP_KEY;
+        apiCall(urlOneRating, function(ratingData) {
+          apiCall(urlAllAdvisories, function(advisoryData) {
+            var advisories = [];
+            for (var i = 0; i < advisoryData.data.length; i++) {
+              var advisory = {
+                severity: advisoryData.data[i].severity,
+                datePublished: advisoryData.data[i].datePublished,
+                sources: advisoryData.data[i].sources
+              };
+              advisories.push(advisory);
+            }
+            var charityObj = {
+              ein: charityData.data.ein,
+              charityName: charityData.data.charityName,
+              tagLine: charityData.data.tagLine,
+              websiteURL: charityData.data.websiteURL,
+              charityNavigatorURL: charityData.data.charityNavigatorURL,
+              mission: charityData.data.mission,
+              city: charityData.data.mailingAddress.city,
+              state: charityData.data.mailingAddress.stateOrProvince,
+              country: charityData.data.mailingAddress.country,
+              currentRating: ratingData.data.rating,
+              currentScore: ratingData.data.score,
+              ratingDate: ratingData.data.publicationDate,
+              ratingImg: ratingData.data.ratingImage.large,
+              fundraisingExpenses: ratingData.data.form990.fundraisingExpenses,
+              administrativeExpenses:
+                ratingData.data.form990.administrativeExpenses,
+              programExpenses: ratingData.data.form990.programExpenses,
+              totalExpenses: ratingData.data.form990.totalExpenses,
+              totalRevenue: ratingData.data.form990.totalRevenue,
+              totalExpenses: ratingData.data.form990.totalExpenses,
+              totalContributions: ratingData.data.form990.totalContributions,
+              totalNetAssets: ratingData.data.form990.totalNetAssets,
+              primaryRevenue: ratingData.data.form990.primaryRevenue,
+              otherRevenue: ratingData.data.form990.otherRevenue,
+              advisories: advisories
+            };
+            //res.render("charityInfo", { charity: charityObj });
+            res.render("charityInfo", charityObj);
+          });
+        });
+      });
+    });
+  });
+
   //res.render("index", { charities: charities });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
