@@ -126,6 +126,7 @@ module.exports = function(app) {
               tagLine: charityData.data.tagLine,
               websiteURL: charityData.data.websiteURL,
               charityNavigatorURL: charityData.data.charityNavigatorURL,
+              charityEmail: charityData.data.generalEmail,
               mission: charityData.data.mission,
               city: charityData.data.mailingAddress.city,
               state: charityData.data.mailingAddress.stateOrProvince,
@@ -148,6 +149,7 @@ module.exports = function(app) {
               advisories: advisories
             };
             //res.render("charityInfo", { charity: charityObj });
+            console.log(ratingData.data.form990.totalContributions);
             res.render("charityInfo", charityObj);
           });
         });
