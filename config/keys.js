@@ -9,5 +9,8 @@ module.exports = {
   mysql: {
     user: "root",
     password: "password"
-  }
+  },
+  session: {
+    cookieKey: "egyptiantsunami"
+}
 };
