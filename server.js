@@ -3,6 +3,10 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var authRoutes = require("./routes/auth-routes");
 var passportSetup = require("./config/passport-setup");
+var Handlebars = require("handlebars");
+var HandlebarsIntl = require("handlebars-intl");
+
+HandlebarsIntl.registerWith(Handlebars);
 
 var db = require("./models");
 
@@ -12,7 +16,8 @@ var PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+//app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use("/auth", authRoutes);
 
 // Handlebars
