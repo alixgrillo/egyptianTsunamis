@@ -8,7 +8,6 @@
 
     <title>HopeLine</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
@@ -16,7 +15,7 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#" id="iconText">
-        <img src="../public/assets/images/charity.png" width="50" height="50" class="d-inline-block align-top" id="icon"
+        <img src="assets/images/charity.png" width="50" height="50" class="d-inline-block align-top" id="icon"
             alt="">
         HopeLine
     </a>
@@ -31,8 +30,8 @@
             <li class="nav-item med active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="med nav-item">
-                <a class="nav-link" id="btn-login" disabled="false">Log
+            <li class="nav-item med">
+                <a class="nav-link" id="btn-login" disabled="true" onclick="login()">Log
                     in</a>
             </li>
             <li class="nav-item med">
@@ -54,8 +53,8 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Please Log In</p>
-        <a class="google-btn" href="/auth/google">Google+</a>
+        <p>Please Choose a Method to Log In</p>
+        <a class="google-btn " href="/auth/google"><i class="fa fa-google"></i>Google</a>
     </div>
     <script>
         // Get the modal

@@ -10,12 +10,16 @@ module.exports = function(app) {
   //   });
   // });
 
-  // // Create a new example
-  // app.post("/api/examples", function (req, res) {
-  //   db.Example.create(req.body).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+ // POST route for saving new User
+  app.post("/index", function (req, res) {
+    db.User.create({
+      name: req.body.text,
+      googleId: req.body.text
+    }).then(function () {
+      console.log(dbUser)
+      res.json(dbUser);
+    });
+  });
 
   // // Delete an example by id
   // app.delete("/api/examples/:id", function (req, res) {
