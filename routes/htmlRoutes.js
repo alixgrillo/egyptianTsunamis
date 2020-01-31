@@ -14,7 +14,7 @@ module.exports = function(app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY +
-      "&rated=true&pageSize=5&sort=RATING%3ADESC";
+      "&rated=true&pageSize=12&sort=RATING%3ADESC";
 
     apiCall(url, function(result) {
       var charities = [];
@@ -50,7 +50,7 @@ module.exports = function(app) {
       process.env.APP_KEY +
       "&rated=true&categoryID=" +
       req.params.categoryID +
-      "&pageSize=5&sort=RATING%3ADESC";
+      "&pageSize=12&sort=RATING%3ADESC";
 
     apiCall(url, function(result) {
       var charities = [];
@@ -74,6 +74,8 @@ module.exports = function(app) {
   });
 
   app.get("/charity/:ein", function(req, res) {
+    var charityObj = {};
+
     var urlOneCharity =
       "https://api.data.charitynavigator.org/v2/Organizations/" +
       req.params.ein +
@@ -99,58 +101,91 @@ module.exports = function(app) {
       process.env.APP_KEY;
 
     apiCall(urlOneCharity, function(charityData) {
-      apiCall(urlAllRatings, function(rating) {
-        var urlOneRating =
-          "https://api.data.charitynavigator.org/v2/Organizations/" +
-          req.params.ein +
-          "/Ratings/" +
-          rating.data[0].ratingID +
-          "?app_id=" +
-          process.env.APP_ID +
-          "&app_key=" +
-          process.env.APP_KEY;
-        apiCall(urlOneRating, function(ratingData) {
-          apiCall(urlAllAdvisories, function(advisoryData) {
-            var advisories = [];
-            for (var i = 0; i < advisoryData.data.length; i++) {
-              var advisory = {
-                severity: advisoryData.data[i].severity,
-                datePublished: advisoryData.data[i].datePublished,
-                sources: advisoryData.data[i].sources
-              };
-              advisories.push(advisory);
-            }
-            var charityObj = {
-              ein: charityData.data.ein,
-              charityName: charityData.data.charityName,
-              tagLine: charityData.data.tagLine,
-              websiteURL: charityData.data.websiteURL,
-              charityNavigatorURL: charityData.data.charityNavigatorURL,
-              charityEmail: charityData.data.generalEmail,
-              mission: charityData.data.mission,
-              city: charityData.data.mailingAddress.city,
-              state: charityData.data.mailingAddress.stateOrProvince,
-              country: charityData.data.mailingAddress.country,
-              currentRating: ratingData.data.rating,
-              currentScore: ratingData.data.score,
-              ratingDate: ratingData.data.publicationDate,
-              ratingImg: ratingData.data.ratingImage.large,
-              fundraisingExpenses: ratingData.data.form990.fundraisingExpenses,
-              administrativeExpenses:
-                ratingData.data.form990.administrativeExpenses,
-              programExpenses: ratingData.data.form990.programExpenses,
-              totalExpenses: ratingData.data.form990.totalExpenses,
-              totalRevenue: ratingData.data.form990.totalRevenue,
-              totalExpenses: ratingData.data.form990.totalExpenses,
-              totalContributions: ratingData.data.form990.totalContributions,
-              totalNetAssets: ratingData.data.form990.totalNetAssets,
-              primaryRevenue: ratingData.data.form990.primaryRevenue,
-              otherRevenue: ratingData.data.form990.otherRevenue,
-              advisories: advisories
-            };
-            //res.render("charityInfo", { charity: charityObj });
-            console.log(ratingData.data.form990.totalContributions);
-            res.render("charityInfo", charityObj);
+      var causeID = parseInt(charityData.data.cause.causeID);
+      // charityObj.causeID = charityData.data.cause.causeID;
+      // charityObj.causeName = charityData.data.cause.causeID;
+      var relatedCharitiesurl =
+        "https://api.data.charitynavigator.org/v2/Organizations?app_id=" +
+        process.env.APP_ID +
+        "&app_key=" +
+        process.env.APP_KEY +
+        "&pageSize=12&rated=true&causeID=" +
+        causeID +
+        "&sort=RATING%3ADESC";
+      apiCall(relatedCharitiesurl, function(relatedCharities) {
+        var charities = [];
+        for (var j = 0; j < relatedCharities.data.length; j++) {
+          var charity = {
+            charityNavigatorURL: relatedCharities.data[j].charityNavigatorURL,
+            charityURL: relatedCharities.data[j].websiteURL,
+            tagLine: relatedCharities.data[j].tagLine,
+            name: relatedCharities.data[j].charityName,
+            ein: relatedCharities.data[j].ein,
+            currentRating: relatedCharities.data[j].currentRating.rating,
+            currentRatingImg:
+              relatedCharities.data[j].currentRating.ratingImage.small,
+            country: relatedCharities.data[j].mailingAddress.country,
+            state: relatedCharities.data[j].mailingAddress.stateOrProvince
+          };
+          charities.push(charity);
+        }
+        charityObj.charities = charities;
+
+        charityObj.ein = charityData.data.ein;
+        charityObj.charityName = charityData.data.charityName;
+        charityObj.causeID = charityData.data.cause.causeID;
+        charityObj.causeName = charityData.data.cause.causeName;
+        charityObj.tagLine = charityData.data.tagLine;
+        charityObj.websiteURL = charityData.data.websiteURL;
+        charityObj.charityNavigatorURL = charityData.data.charityNavigatorURL;
+        charityObj.charityEmail = charityData.data.generalEmail;
+        charityObj.mission = charityData.data.mission;
+        charityObj.city = charityData.data.mailingAddress.city;
+        charityObj.state = charityData.data.mailingAddress.stateOrProvince;
+        charityObj.country = charityData.data.mailingAddress.country;
+
+        apiCall(urlAllRatings, function(rating) {
+          var urlOneRating =
+            "https://api.data.charitynavigator.org/v2/Organizations/" +
+            req.params.ein +
+            "/Ratings/" +
+            rating.data[0].ratingID +
+            "?app_id=" +
+            process.env.APP_ID +
+            "&app_key=" +
+            process.env.APP_KEY;
+          apiCall(urlOneRating, function(ratingData) {
+            charityObj.currentRating = ratingData.data.rating;
+            charityObj.currentScore = ratingData.data.score;
+            charityObj.ratingDate = ratingData.data.publicationDate;
+            charityObj.ratingImg = ratingData.data.ratingImage.large;
+            charityObj.fundraisingExpenses =
+              ratingData.data.form990.fundraisingExpenses;
+            charityObj.administrativeExpenses =
+              ratingData.data.form990.administrativeExpenses;
+            charityObj.programExpenses =
+              ratingData.data.form990.programExpenses;
+            charityObj.totalExpenses = ratingData.data.form990.totalExpenses;
+            charityObj.totalRevenue = ratingData.data.form990.totalRevenue;
+            charityObj.totalExpenses = ratingData.data.form990.totalExpenses;
+            charityObj.totalContributions =
+              ratingData.data.form990.totalContributions;
+            charityObj.totalNetAssets = ratingData.data.form990.totalNetAssets;
+            charityObj.primaryRevenue = ratingData.data.form990.primaryRevenue;
+            charityObj.otherRevenue = ratingData.data.form990.otherRevenue;
+            apiCall(urlAllAdvisories, function(advisoryData) {
+              var advisories = [];
+              for (var i = 0; i < advisoryData.data.length; i++) {
+                var advisory = {
+                  severity: advisoryData.data[i].severity,
+                  datePublished: advisoryData.data[i].datePublished,
+                  sources: advisoryData.data[i].sources
+                };
+                advisories.push(advisory);
+                charityObj.advisories = advisories;
+              }
+              res.render("charityInfo", charityObj);
+            });
           });
         });
       });
