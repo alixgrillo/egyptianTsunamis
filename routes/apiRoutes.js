@@ -14,11 +14,13 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-
-  app.post("/api/charitySave/:ein", function(req, res) {
+  /// NEED TO UPDATE USER ID TO COOKIE
+  // Making sure this merged correctly
+  app.post("/api/charitySave", function(req, res) {
+    console.log(req.body);
     db.Charity.create({
-      charityEin: req.params.ein,
-      UserId: req.session.passport.user || 1
+      charityEin: req.body.charityEin,
+      UserId: 1
     }).then(function(dbCharity) {
       res.json(dbCharity);
     });

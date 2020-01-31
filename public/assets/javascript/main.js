@@ -10,13 +10,13 @@ var $exampleList = $("#example-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveCharity: function(ein) {
-    return $.ajax({
+    return $.post({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/charitySave/" + ein,
-      data: {}
+      url: "/api/charitySave",
+      data: JSON.stringify(ein)
     });
   },
   saveExample: function(example) {
@@ -43,13 +43,20 @@ var API = {
   }
 };
 
-function saveCharityToUser() {
-  var ein = $(this).attr(ein);
-  console.log("button pushed for " + ein);
-  API.saveCharity(ein).then(function(data) {
-    console.log(data);
-  });
+$(document).ready(function() {
+  var btn = $("#saveCharity");
 
+  btn.on("click", function() {
+    var ein = $(this).attr("data-ein");
+    console.log("button pushed for " + ein);
+    var ein = {
+      charityEin: ein
+    };
+    API.saveCharity(ein).then(function(data) {
+      console.log(data);
+    });
+  });
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
@@ -115,8 +122,5 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-// Add event listeners to the submit and delete buttons
-$(document).on("click", "#saveCharity", console.log("button pushed"));
-//$saveCharityBtn.on("click", saveCharityToUser);
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
