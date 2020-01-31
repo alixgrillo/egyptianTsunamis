@@ -157,6 +157,30 @@ module.exports = function(app) {
             "&app_key=" +
             process.env.APP_KEY;
           apiCall(urlOneRating, function(ratingData) {
+            var admRatio =
+              ratingData.data.financialRating.performanceMetrics
+                .administrationExpensesRatio;
+            if (typeof admRatio !== "number") {
+              admRatio =
+                ratingData.data.form990.administrativeExpenses /
+                ratingData.data.form990.totalExpenses;
+            }
+            var progRatio =
+              ratingData.data.financialRating.performanceMetrics
+                .programExpensesRatio;
+            if (typeof progRatio !== "number") {
+              progRatio =
+                ratingData.data.form990.programExpenses /
+                ratingData.data.form990.totalExpenses;
+            }
+            var fundRatio =
+              ratingData.data.financialRating.performanceMetrics
+                .fundraisingExpensesRatio;
+            if (typeof fundRatio !== "number") {
+              fundRatio =
+                ratingData.data.form990.fundraisingExpenses /
+                ratingData.data.form990.totalExpenses;
+            }
             charityObj.currentRating = ratingData.data.rating;
             charityObj.currentScore = ratingData.data.score;
             charityObj.ratingDate = ratingData.data.publicationDate;
@@ -175,6 +199,9 @@ module.exports = function(app) {
             charityObj.totalNetAssets = ratingData.data.form990.totalNetAssets;
             charityObj.primaryRevenue = ratingData.data.form990.primaryRevenue;
             charityObj.otherRevenue = ratingData.data.form990.otherRevenue;
+            charityObj.programExpensesRatio = progRatio;
+            charityObj.fundraisingExpenseRatio = fundRatio;
+            charityObj.administrationExpensesRatio = admRatio;
             apiCall(urlAllAdvisories, function(advisoryData) {
               var advisories = [];
               for (var i = 0; i < advisoryData.data.length; i++) {

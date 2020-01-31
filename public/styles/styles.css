@@ -88,6 +88,7 @@ margin: 20px;
 body{
   font-family: arial;
   margin: 0;
+  font-size: small;
 }
 nav{
   background: #ff5353;
@@ -163,4 +164,45 @@ main,header{
   text-decoration: none;
   cursor: pointer;
 }
+#programRatio{
+  font-size: 100px;
+  color: #20B2AA;
+  font-weight: bold;
+}
+#fundraisingExpenseRatio{
+  font-size: 100px;
+  color: #6120B2;
+  font-weight: bold;
+}
+#administrationExpensesRatio{
+  font-size: 100px;
+  color: #B22028;
+  font-weight: bold;
+}
+.expTag{
+  font-size: medium;
+  font-weight: bold;
+}
+.definitions{
+  font-weight: bold;
+}
+.center{
+  text-align: center;
+}
+.charityBtn{
+  margin: 1%;
+}
 
+/* 76672A */
+/* 8C625B */
+/* E5C3A0 */
+/* 463E26 */
+/* 20B2AA */
+
+/* #6120B2 97,32,178*/
+/* #B22028 178,32,40*/
+/* #20B2AA 32,178,170*/
+/* #71B220 113,178,32*/
+
+/* #2071B2 32,113,178 */
+/* #B22071 178,32,113*/
