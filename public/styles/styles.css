@@ -164,6 +164,11 @@ main,header{
   text-decoration: none;
   cursor: pointer;
 }
+
+#btn-login {
+  cursor: pointer;
+}
+
 #programRatio{
   font-size: 100px;
   color: #20B2AA;
