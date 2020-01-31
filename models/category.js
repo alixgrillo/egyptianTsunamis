@@ -13,5 +13,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+  Category.associate = function(models) {
+    Category.hasMany(models.UserCategory, {
+      onDelete: "cascade"
+    });
+  };
+
   return Category;
 };
