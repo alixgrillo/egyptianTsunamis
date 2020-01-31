@@ -31,6 +31,7 @@ module.exports = function(app) {
           state: result.data[i].mailingAddress.stateOrProvince
         };
         charities.push(charity);
+        charities.categoryName = "all categories";
       }
       hndbrsObj.charities = charities;
       res.render("index", hndbrsObj);
@@ -67,6 +68,7 @@ module.exports = function(app) {
           state: result.data[i].mailingAddress.stateOrProvince
         };
         charities.push(charity);
+        charities.categoryName = result.data[0].category.categoryName;
       }
       hndbrsObj.charities = charities;
       res.render("index", hndbrsObj);
