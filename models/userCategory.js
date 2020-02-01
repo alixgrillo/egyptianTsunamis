@@ -4,5 +4,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     }
   });
+
+  UserCategory.associate = function(models) {
+    UserCategory.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  UserCategory.associate = function(models) {
+    UserCategory.belongsTo(models.Category, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return UserCategory;
 };
