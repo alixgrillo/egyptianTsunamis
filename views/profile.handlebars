@@ -1,4 +1,44 @@
-<p>Simple Profile View</p>
-<h1>Welcome to your profile{{user.username}}</h1>
+<div class="wrapper-main">
 
-<h2>More information about user</h2>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="jumbotron">
+            <div class="container">
+
+                <p>Simple Profile View</p>
+                <h1>Welcome to your profile{{user.username}}</h1>
+
+                <h2>More information about user</h2>
+
+
+
+                <h2>Recommended charities based on {{charities.categoryName}}</h2>
+                <div class="card-group">
+                    {{#each charities}}
+                    <div class="card" id="charity-cards">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h5 class="card-title">{{name}}</h5>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                                        data-analytics-eventvalue="Get More Information"
+                                        data-analytics-pagesection="categories" id="{{ein}}">
+                                        <i class="fa fa-info"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <p class="card-text">{{tagLine}}</p>
+                            <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}}
+                                    alt="..."></p>
+
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

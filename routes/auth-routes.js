@@ -22,11 +22,12 @@ router.get(
 );
 
 //callback for google to redirect to
-router.get("/google/redirect", passport.authenticate("google"), function(
-  req,
-  res
-) {
-  res.redirect("/profile");
-});
+router.get("/google/redirect", passport.authenticate("google", 
+  { 
+    successRedirect: '/',
+    failureRedirect: '/auth/login'
+}
+));
+
 
 module.exports = router;
