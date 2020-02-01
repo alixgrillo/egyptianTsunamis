@@ -1,10 +1,10 @@
 //var Chart = require("chart.js");
 
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+// var $exampleText = $("#example-text");
+// var $exampleDescription = $("#example-description");
+// var $submitBtn = $("#submit");
+// var $exampleList = $("#example-list");
 //var $saveCharityBtn = $("#saveCharity");
 
 // The API object contains methods for each kind of request we'll make

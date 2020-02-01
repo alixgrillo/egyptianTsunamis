@@ -2,7 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var authRoutes = require("./routes/auth-routes");
-var profileRoutes = require("./routes/profile-routes");
+//var profileRoutes = require("./routes/profile-routes");
 var passportSetup = require("./config/passport-setup");
 var Handlebars = require("handlebars");
 var HandlebarsIntl = require("handlebars-intl");
