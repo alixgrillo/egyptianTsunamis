@@ -66,6 +66,9 @@
     </section>
 
     <h2>Recommended charities based on {{charities.categoryName}}</h2>
+    <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save This
+        Category</button>
+
     <div class="card-group">
         {{#each charities}}
         <div class="card" id="charity-cards">
