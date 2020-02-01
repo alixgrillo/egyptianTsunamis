@@ -67,8 +67,10 @@ module.exports = function(app) {
           state: result.data[i].mailingAddress.stateOrProvince
         };
         charities.push(charity);
-        charities.categoryName = result.data[0].category.categoryName;
       }
+      charities.categoryName = result.data[0].category.categoryName;
+      charities.categoryID = req.params.categoryID;
+      console.log(charities.categoryID);
       hndbrsObj.charities = charities;
       res.render("index", hndbrsObj);
     });
@@ -229,40 +231,47 @@ module.exports = function(app) {
       },
       include: [db.User]
     }).then(function(dbUser) {
-      //res.json(dbUser);
-      var savedCharities = [];
-      for (var i = 0; i < dbUser.length; i++) {
-        var urlOneCharity =
-          "https://api.data.charitynavigator.org/v2/Organizations/" +
-          dbUser[i].charityEin +
-          "?app_id=" +
-          process.env.APP_ID +
-          "&app_key=" +
-          process.env.APP_KEY;
-        apiCall(urlOneCharity, function(charityData) {
-          charity = {};
-          charity.ein = charityData.data.ein;
-          charity.charityName = charityData.data.charityName;
-          charity.causeID = charityData.data.cause.causeID;
-          charity.causeName = charityData.data.cause.causeName;
-          charity.tagLine = charityData.data.tagLine;
-          charity.currentRating = charityData.data.currentRating.rating;
-          charity.currentRatingImg =
-            charityData.data.currentRating.ratingImage.large;
-          charity.websiteURL = charityData.data.websiteURL;
-          charity.charityNavigatorURL = charityData.data.charityNavigatorURL;
-          charity.charityEmail = charityData.data.generalEmail;
-          charity.mission = charityData.data.mission;
-          charity.city = charityData.data.mailingAddress.city;
-          charity.state = charityData.data.mailingAddress.stateOrProvince;
-          charity.country = charityData.data.mailingAddress.country;
-          savedCharities.push(charity);
-          hndbrsObj.savedCharities = savedCharities;
-          if (hndbrsObj.savedCharities.length === dbUser.length) {
-            res.render("profile", hndbrsObj);
-          }
-        });
-      }
+      db.UserCategory.findAll({
+        where: {
+          UserId: 1
+        },
+        include: [db.Category]
+      }).then(function(dbCategory) {
+        var savedCharities = [];
+        for (var i = 0; i < dbUser.length; i++) {
+          var urlOneCharity =
+            "https://api.data.charitynavigator.org/v2/Organizations/" +
+            dbUser[i].charityEin +
+            "?app_id=" +
+            process.env.APP_ID +
+            "&app_key=" +
+            process.env.APP_KEY;
+          apiCall(urlOneCharity, function(charityData) {
+            charity = {};
+            charity.ein = charityData.data.ein;
+            charity.charityName = charityData.data.charityName;
+            charity.causeID = charityData.data.cause.causeID;
+            charity.causeName = charityData.data.cause.causeName;
+            charity.tagLine = charityData.data.tagLine;
+            charity.currentRating = charityData.data.currentRating.rating;
+            charity.currentRatingImg =
+              charityData.data.currentRating.ratingImage.large;
+            charity.websiteURL = charityData.data.websiteURL;
+            charity.charityNavigatorURL = charityData.data.charityNavigatorURL;
+            charity.charityEmail = charityData.data.generalEmail;
+            charity.mission = charityData.data.mission;
+            charity.city = charityData.data.mailingAddress.city;
+            charity.state = charityData.data.mailingAddress.stateOrProvince;
+            charity.country = charityData.data.mailingAddress.country;
+            savedCharities.push(charity);
+            hndbrsObj.savedCharities = savedCharities;
+            hndbrsObj.savedCategories = dbCategory;
+            if (hndbrsObj.savedCharities.length === dbUser.length) {
+              res.render("profile", hndbrsObj);
+            }
+          });
+        }
+      });
     });
 
     // app.get("/profile", function(req, res) {

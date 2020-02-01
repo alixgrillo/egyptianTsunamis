@@ -1,7 +1,7 @@
 <p>Simple Profile View</p>
 <h1>Welcome to your profile{{user.username}}</h1>
 
-<h2>More information about user</h2>
+<h2>More information about user</h2> 
 
 <h2>Your Saved Charities</h2>
 <div class="card-group">
@@ -32,14 +32,22 @@
     {{/each}}
 </div>
 
+<h1 class="browse-fdr-category-header dna-h2">Your Saved Charity Categories</h1>
+                    <br>
+                    {{#each savedCategories}}
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="/category/{{categoryID}}"
+                        data-analytics-subtype="button" data-analytics-eventvalue={{category}}
+                        data-analytics-pagesection="categories" id={{categoryID}}>
+                        <i class="{{Category.iconName}}"> {{category}}</i>
+                    </a>
+                    {{/each}}
 
 
 
 
 
 
-
-<h2>Recommended charities with the same cause ({{causeName}})</h2>
+{{!-- <h2>Recommended charities</h2>
 <div class="card-group">
     {{#each charities}}
     <div class="card" id="charity-cards">
@@ -62,5 +70,5 @@
 
         </div>
     </div>
-    {{/each}}
+    {{/each}} --}}
 </div>

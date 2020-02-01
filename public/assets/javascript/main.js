@@ -19,6 +19,16 @@ var API = {
       data: JSON.stringify(ein)
     });
   },
+  saveCategory: function(catName) {
+    return $.post({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "/api/categorySave",
+      data: JSON.stringify(catName)
+    });
+  },
   saveExample: function(example) {
     return $.ajax({
       headers: {
@@ -59,6 +69,20 @@ $(document).ready(function() {
       charityEin: ein
     };
     API.saveCharity(ein).then(function(data) {
+      console.log(data);
+    });
+  });
+
+  var btn = $("#saveCategory");
+
+  btn.on("click", function() {
+    var catName = $(this).attr("data-name");
+    var catId = $(this).attr("data-id");
+    var category = {
+      category: catName,
+      CategoryId: catId
+    };
+    API.saveCategory(category).then(function(data) {
       console.log(data);
     });
   });

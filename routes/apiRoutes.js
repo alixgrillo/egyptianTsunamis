@@ -28,11 +28,12 @@ module.exports = function(app) {
 
   app.post("/api/categorySave", function(req, res) {
     console.log(req.body);
-    db.Charity.create({
-      charityEin: req.body.charityEin,
+    db.UserCategory.create({
+      category: req.body.category,
+      CategoryId: req.body.CategoryId,
       UserId: 1
-    }).then(function(dbCharity) {
-      res.json(dbCharity);
+    }).then(function(dbCategory) {
+      res.json(dbCategory);
     });
   });
 
