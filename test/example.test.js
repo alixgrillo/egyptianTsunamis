@@ -26,7 +26,7 @@ describe("GET / for categories", function() {
       // Request the route that returns all examples
       request.get("/").end(function(err, res) {
         var responseStatus = res.status;
-        var responseBody = res.body;
+        var responseBody = res.body.categories;
 
         // Run assertions on the response
 
