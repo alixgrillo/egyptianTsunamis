@@ -3,7 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var authRoutes = require("./routes/auth-routes");
 var profileRoutes = require("./routes/profile-routes");
-//var passportSetup = require("./config/passport-setup");
+var passportSetup = require("./config/passport-setup");
 var Handlebars = require("handlebars");
 var HandlebarsIntl = require("handlebars-intl");
 var cookieSession = require("cookie-session");
@@ -42,7 +42,7 @@ app.use(express.json());
 //app.use(express.static("public"));
 app.use(express.static(__dirname + "/public"));
 app.use("/auth", authRoutes);
-app.use("/profile", profileRoutes);
+//app.use("/profile", profileRoutes);
 
 // Routes
 require("./routes/apiRoutes")(app);
@@ -71,5 +71,5 @@ db.sequelize.sync(syncOptions).then(function() {
     );
   });
 });
-
+console.log(passportSetup);
 module.exports = app;

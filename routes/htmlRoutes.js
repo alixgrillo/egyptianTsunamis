@@ -219,32 +219,113 @@ module.exports = function(app) {
       });
     });
   });
-  // // Load index page
-  // app.get("/", function(req, res) {
-  //   db.Example.findAll({}).then(function(dbExamples) {
-  //     res.render("index", {
-  //       msg: "Welcome!",
-  //       examples: dbExamples
-  //     });
-  //   });
-  // });
 
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function(
-  //     dbExample
-  //   ) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
+  app.get("/profile", function(req, res) {
+    console.log("hit");
+    var hndbrsObj = {};
+    db.Charity.findAll({
+      where: {
+        UserId: 1
+      },
+      include: [db.User]
+    }).then(function(dbUser) {
+      //res.json(dbUser);
+      var savedCharities = [];
+      for (var i = 0; i < dbUser.length; i++) {
+        var urlOneCharity =
+          "https://api.data.charitynavigator.org/v2/Organizations/" +
+          dbUser[i].charityEin +
+          "?app_id=" +
+          process.env.APP_ID +
+          "&app_key=" +
+          process.env.APP_KEY;
+        apiCall(urlOneCharity, function(charityData) {
+          charity = {};
+          charity.ein = charityData.data.ein;
+          charity.charityName = charityData.data.charityName;
+          charity.causeID = charityData.data.cause.causeID;
+          charity.causeName = charityData.data.cause.causeName;
+          charity.tagLine = charityData.data.tagLine;
+          charity.currentRating = charityData.data.currentRating.rating;
+          charity.currentRatingImg =
+            charityData.data.currentRating.ratingImage.large;
+          charity.websiteURL = charityData.data.websiteURL;
+          charity.charityNavigatorURL = charityData.data.charityNavigatorURL;
+          charity.charityEmail = charityData.data.generalEmail;
+          charity.mission = charityData.data.mission;
+          charity.city = charityData.data.mailingAddress.city;
+          charity.state = charityData.data.mailingAddress.stateOrProvince;
+          charity.country = charityData.data.mailingAddress.country;
+          savedCharities.push(charity);
+          hndbrsObj.savedCharities = savedCharities;
+          if (hndbrsObj.savedCharities.length === dbUser.length) {
+            res.render("profile", hndbrsObj);
+          }
+        });
+      }
+    });
+
+    // app.get("/profile", function(req, res) {
+    //   console.log("hit");
+    //   var hndbrsObj = {};
+    //   db.Charity.findAll({
+    //     where: {
+    //       UserId: 1
+    //     },
+    //     include: [db.User]
+    //   }).then(function(dbUser) {
+    //     //res.json(dbUser);
+    //     var savedCharities = [];
+    //     var multiURL = [];
+    //     for (var i = 0; i < dbUser.length; i++) {
+    //       multiURL.push(multiApiGet(dbUser.charityEin));
+
+    //       // apiCall(urlOneCharity, function(charityData) {
+    //       //   charity = {};
+    //       //   charity.ein = charityData.data.ein;
+    //       //   charity.charityName = charityData.data.charityName;
+    //       //   charity.causeID = charityData.data.cause.causeID;
+    //       //   charity.causeName = charityData.data.cause.causeName;
+    //       //   charity.tagLine = charityData.data.tagLine;
+    //       //   charity.websiteURL = charityData.data.websiteURL;
+    //       //   charity.charityNavigatorURL = charityData.data.charityNavigatorURL;
+    //       //   charity.charityEmail = charityData.data.generalEmail;
+    //       //   charity.mission = charityData.data.mission;
+    //       //   charity.city = charityData.data.mailingAddress.city;
+    //       //   charity.state = charityData.data.mailingAddress.stateOrProvince;
+    //       //   charity.country = charityData.data.mailingAddress.country;
+
+    //       //   savedCharities.push(charity);
+
+    //       //   hndbrsObj.savedCharities = savedCharities;
+    //       //});
+    //       // hndbrsObj.savedCharities = savedCharities;
+    //       // console.log("\n the handlebars ----------------");
+    //       // console.log(hndbrsObj);
+    //       // res.render("profile", hndbrsObj);
+    //     }
+    //     console.log(multiURL);
+    //     axios.all(multiURL).then(function(response){
+    //       console.log(response);
+    //     });
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
 };
+
+// function multiApiGet(ein) {
+//   return axios.get(
+//     "https://api.data.charitynavigator.org/v2/Organizations/" +
+//       ein +
+//       "?app_id=" +
+//       process.env.APP_ID +
+//       "&app_key=" +
+//       process.env.APP_KEY
+//   );
+// }
 
 function apiCall(url, cb) {
   axios
