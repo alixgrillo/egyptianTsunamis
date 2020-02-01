@@ -266,10 +266,14 @@ module.exports = function(app) {
             savedCharities.push(charity);
             hndbrsObj.savedCharities = savedCharities;
             hndbrsObj.savedCategories = dbCategory;
+
             if (hndbrsObj.savedCharities.length === dbUser.length) {
               res.render("profile", hndbrsObj);
             }
           });
+        }
+        if (dbUser.length === 0) {
+          res.render("profile", hndbrsObj);
         }
       });
     });
