@@ -8,5 +8,6 @@ branches:
 cache:
   directories:
     - node_modules
+dist: precise
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
