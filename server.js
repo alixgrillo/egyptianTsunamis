@@ -45,7 +45,7 @@ app.use("/profile", profileRoutes);
 
 
 // Routes
-//require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 //create home route
