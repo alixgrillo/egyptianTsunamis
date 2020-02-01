@@ -5,9 +5,20 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+//var $saveCharityBtn = $("#saveCharity");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
+  saveCharity: function(ein) {
+    return $.post({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "/api/charitySave",
+      data: JSON.stringify(ein)
+    });
+  },
   saveExample: function(example) {
     return $.ajax({
       headers: {
@@ -29,263 +40,23 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
-  },
-  getCategories: function() {
-    return $.ajax({
-      url: "api/categories",
-      type: "GET"
-    });
-  },
-  getCharitiesByCat: function(categoryID) {
-    return $.ajax({
-      url: "/api/organizations/category/" + categoryID,
-      type: "GET"
-    });
-  },
-  getSingleCharities: function(ein) {
-    return $.ajax({
-      url: "/api/organizations/" + ein,
-      type: "GET"
-    });
-  },
-  getRatingsId: function(ein) {
-    return $.ajax({
-      url: "/api/ratings/" + ein,
-      type: "GET"
-    });
-  },
-  getRatingsInfo: function(ein, ratingId) {
-    return $.ajax({
-      url: "/api/ratings/" + ein + "/" + ratingId,
-      type: "GET"
-    });
-  },
-  getAdvisories: function(ein) {
-    return $.ajax({
-      url: "/api/advisories/" + ein,
-      type: "GET"
-    });
-  },
-  getAllCharities: function() {
-    return $.ajax({
-      url: "/api/organizations/",
-      type: "GET"
-    });
   }
 };
 
-// function that returns all available categories that are in Charity Navigator and puts them in buttons
-// TO DO: this currently just loads buttons on document start - need to decide WHEN to load buttons and WHERE
-// to load them
-// $(document).ready(function() {
-//   API.getCategories().then(function(data) {
-//     console.log(data);
-//     for (var i = 0; i < data.length; i++) {
-//       // var $catButton = $("<button>")
-//       //   .addClass("btn btn-light category-btn")
-//       //   .text(data[i].name)
-//       //   .attr("id", data[i].id);
-//       // $("#home").append($catButton);
-//       var element = $("<i class='fa fa-paw'></i>");
-//       var $catButton = $("<a>")
-//         .addClass("dna-grid-col-l-3 category-wrapper fundingTag")
-//         .attr("href", "")
-//         .attr("data-analytics-subtype", "button")
-//         .attr("data-analytics-eventvalue", data[i].name)
-//         .attr("data-analytics-pagesection", "categories")
-//         .attr("id", data[i].id)
-//         .text(data[i].name);
-//       $catButton.prepend(element);
-//       $(".categories").append($catButton);
-//     }
-//   });
-// });
+$(document).ready(function() {
+  var btn = $("#saveCharity");
 
-// $(document).ready(function() {
-//   API.getAllCharities().then(function(data) {
-//     console.log(data);
-
-//     // var allCharities = { charities: data };
-//     // $.handlebars({
-//     //   templatePath: "../../../views/",
-//     //   templateExtension: "hbs"
-//     // });
-//     // $("#charity-cards").render("index", {
-//     //   charities: allCharities
-//     // });
-//   });
-// });
-
-// $(document).on("click", ".category-btn", populateCharityCards);
-
-// function populateCharityCards() {
-//   var categoryID = $(this).attr("id");
-
-//   API.getCharitiesByCat(categoryID).then(function(data) {
-//     for (var i = 0; i < 10; i++) {
-//       var charityDiv = $("<div>").addClass("card");
-
-//       var charityCard = $("<div>").addClass("card-body");
-
-//       var charityLink = $("<a>")
-//         .addClass("card-link")
-//         .attr("href", data[i].charityURL)
-//         .text("Website");
-
-//       var charityNavLink = $("<a>")
-//         .addClass("card-link")
-//         .attr("href", data[i].charityNavigatorURL)
-//         .text("Charity Navigator");
-
-//       var saveMe = $("<button>")
-//         .addClass("btn btn-primary saveMe")
-//         .attr("id", data[i].ein)
-//         .text("Follow this Charity");
-
-//       var moreInfo = $("<button>")
-//         .addClass("btn btn-primary moreInfo")
-//         .attr("id", data[i].ein)
-//         .text("More Information");
-
-//       var title = $("<h5>")
-//         .addClass("card-title")
-//         .text(data[i].name);
-
-//       var tagline = $("<p>")
-//         .addClass("card-text")
-//         .text(data[i].tagLine);
-
-//       var rating = $("<p>")
-//         .addClass("card-text")
-//         .text("Current Rating: ");
-
-//       var ratingImg = $("<img>").attr("src", data[i].currentRatingImg);
-
-//       charityCard.append(title);
-//       charityCard.append(tagline);
-//       rating.append(ratingImg);
-//       charityCard.append(rating);
-//       charityCard.append(charityLink);
-//       charityCard.append(charityNavLink);
-//       charityCard.append(saveMe);
-//       charityCard.append(moreInfo);
-//       charityDiv.append(charityCard);
-//       $("#home").append(charityDiv);
-//     }
-//   });
-// }
-
-$(document).on("click", ".moreInfo", populateCharityInfoDiv);
-
-function populateCharityInfoDiv() {
-  console.log("more info button being pushed");
-  var ein = $(this).attr("id");
-  console.log(ein);
-
-  API.getSingleCharities(ein).then(function(charityData) {
-    console.log("\n----------- Charity Info----\n");
-    console.log(charityData);
-    API.getRatingsId(ein).then(function(rating) {
-      console.log("\n----------- rating Info----\n");
-      console.log(rating);
-      API.getRatingsInfo(ein, rating[0].ratingId).then(function(ratingData) {
-        console.log("\n----------- ratingsub Info----\n");
-        console.log(ratingData);
-        API.getAdvisories(ein).then(function(advisoryData) {
-          console.log("\n----------- advisory Info----\n");
-          console.log(advisoryData);
-          //var charityDiv = $("<div>").addClass("card");
-          var charityDiv = $("#singleCharityInfo");
-
-          var charityCard = $("<div>").addClass("card-body");
-
-          var charityLink = $("<a>")
-            .addClass("card-link")
-            .attr("href", charityData.charityURL)
-            .text("Website");
-
-          var charityNavLink = $("<a>")
-            .addClass("card-link")
-            .attr("href", charityData.charityNavigatorURL)
-            .text("Charity Navigator");
-
-          var saveMe = $("<a>")
-            .addClass("btn btn-primary")
-            .attr("href", "#")
-            .attr("id", charityData.ein)
-            .text("Follow this Charity");
-
-          var title = $("<h5>")
-            .addClass("card-title")
-            .text(charityData.name);
-
-          var tagline = $("<p>")
-            .addClass("card-text")
-            .text(charityData.tagLine);
-
-          var rating = $("<p>")
-            .addClass("card-text")
-            .text("Current Rating: ");
-
-          var ratingImg = $("<img>").attr("src", charityData.currentRatingImg);
-
-          var location = $("<p>")
-            .addClass("card-text")
-            .text(
-              "Location: " +
-                charityData.stateOrProvince +
-                ", " +
-                charityData.country
-            );
-
-          //var expensesDiv = $("<canvas></canvas>").attr("id", "expenses");
-          //charityCard.append(expensesDiv);
-
-          var ctx = $("#expenses");
-
-          var data = {
-            datasets: [
-              {
-                data: [
-                  ratingData.fundraisingExpenses,
-                  ratingData.administrativeExpenses,
-                  ratingData.programExpenses
-                ],
-                backgroundColor: [
-                  "rgb(255, 0, 0)",
-                  "	rgb(0, 0, 255)",
-                  "rgb(255, 255, 0)"
-                ]
-              }
-            ],
-            labels: [
-              "Fundraising Expenses",
-              "Administrative Expenses",
-              "Program Expenses"
-            ]
-          };
-
-          var chart = new Chart(ctx, {
-            type: "doughnut",
-            data: data
-          });
-
-          charityCard.append(title);
-          charityCard.append(tagline);
-          rating.append(ratingImg);
-          charityCard.append(rating);
-          charityCard.append(location);
-          charityCard.append(chart);
-          charityCard.append(charityLink);
-          charityCard.append(charityNavLink);
-          charityCard.append(saveMe);
-          charityDiv.append(charityCard);
-          //$("#home").append(charityDiv);
-        });
-      });
+  btn.on("click", function() {
+    var ein = $(this).attr("data-ein");
+    console.log("button pushed for " + ein);
+    var ein = {
+      charityEin: ein
+    };
+    API.saveCharity(ein).then(function(data) {
+      console.log(data);
     });
   });
-}
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
@@ -351,6 +122,5 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-// Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
