@@ -10,4 +10,6 @@ cache:
     - node_modules
 dist: precise
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
+  # - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
+  - mysql -u root -e "CREATE DATABASE testdb;"
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON testdb.* TO 'travis'@'%';";
