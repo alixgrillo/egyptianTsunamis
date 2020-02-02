@@ -14,12 +14,9 @@ router.get("/logout", function(req, res) {
 });
 
 //auth with google
-router.get(
-  "/google",
-  passport.authenticate("google", {
+router.get("/google", passport.authenticate("google", {
     scope: ["profile"]
-  })
-);
+  }));
 
 //callback for google to redirect to
 router.get("/google/redirect", passport.authenticate("google", 

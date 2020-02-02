@@ -1,10 +1,8 @@
 var db = require("../models");
-var axios = require("axios");
 
 module.exports = function(app) {
   // get "/" for select all
   app.get("/", function(req, res) {
-    var hndbrsObj = {};
     db.Category.findAll({}).then(function(result) {
       hndbrsObj.categories = result;
     });
@@ -76,148 +74,13 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/charity/:ein", function(req, res) {
-    var charityObj = {};
-
-    var urlOneCharity =
-      "https://api.data.charitynavigator.org/v2/Organizations/" +
-      req.params.ein +
-      "?app_id=" +
-      process.env.APP_ID +
-      "&app_key=" +
-      process.env.APP_KEY;
-
-    var urlAllRatings =
-      "https://api.data.charitynavigator.org/v2/Organizations/" +
-      req.params.ein +
-      "/Ratings?app_id=" +
-      process.env.APP_ID +
-      "&app_key=" +
-      process.env.APP_KEY;
-
-    var urlAllAdvisories =
-      "https://api.data.charitynavigator.org/v2/Organizations/" +
-      req.params.ein +
-      "/Advisories/?app_id=" +
-      process.env.APP_ID +
-      "&app_key=" +
-      process.env.APP_KEY;
-
-    apiCall(urlOneCharity, function(charityData) {
-      var causeID = parseInt(charityData.data.cause.causeID);
-      // charityObj.causeID = charityData.data.cause.causeID;
-      // charityObj.causeName = charityData.data.cause.causeID;
-      var relatedCharitiesurl =
-        "https://api.data.charitynavigator.org/v2/Organizations?app_id=" +
-        process.env.APP_ID +
-        "&app_key=" +
-        process.env.APP_KEY +
-        "&pageSize=12&rated=true&causeID=" +
-        causeID +
-        "&sort=RATING%3ADESC";
-      apiCall(relatedCharitiesurl, function(relatedCharities) {
-        var charities = [];
-        for (var j = 0; j < relatedCharities.data.length; j++) {
-          var charity = {
-            charityNavigatorURL: relatedCharities.data[j].charityNavigatorURL,
-            charityURL: relatedCharities.data[j].websiteURL,
-            tagLine: relatedCharities.data[j].tagLine,
-            name: relatedCharities.data[j].charityName,
-            ein: relatedCharities.data[j].ein,
-            currentRating: relatedCharities.data[j].currentRating.rating,
-            currentRatingImg:
-              relatedCharities.data[j].currentRating.ratingImage.small,
-            country: relatedCharities.data[j].mailingAddress.country,
-            state: relatedCharities.data[j].mailingAddress.stateOrProvince
-          };
-          charities.push(charity);
-        }
-        charityObj.charities = charities;
-
-        charityObj.ein = charityData.data.ein;
-        charityObj.charityName = charityData.data.charityName;
-        charityObj.causeID = charityData.data.cause.causeID;
-        charityObj.causeName = charityData.data.cause.causeName;
-        charityObj.tagLine = charityData.data.tagLine;
-        charityObj.websiteURL = charityData.data.websiteURL;
-        charityObj.charityNavigatorURL = charityData.data.charityNavigatorURL;
-        charityObj.charityEmail = charityData.data.generalEmail;
-        charityObj.mission = charityData.data.mission;
-        charityObj.city = charityData.data.mailingAddress.city;
-        charityObj.state = charityData.data.mailingAddress.stateOrProvince;
-        charityObj.country = charityData.data.mailingAddress.country;
-
-        apiCall(urlAllRatings, function(rating) {
-          var urlOneRating =
-            "https://api.data.charitynavigator.org/v2/Organizations/" +
-            req.params.ein +
-            "/Ratings/" +
-            rating.data[0].ratingID +
-            "?app_id=" +
-            process.env.APP_ID +
-            "&app_key=" +
-            process.env.APP_KEY;
-          apiCall(urlOneRating, function(ratingData) {
-            var admRatio =
-              ratingData.data.financialRating.performanceMetrics
-                .administrationExpensesRatio;
-            if (typeof admRatio !== "number") {
-              admRatio =
-                ratingData.data.form990.administrativeExpenses /
-                ratingData.data.form990.totalExpenses;
-            }
-            var progRatio =
-              ratingData.data.financialRating.performanceMetrics
-                .programExpensesRatio;
-            if (typeof progRatio !== "number") {
-              progRatio =
-                ratingData.data.form990.programExpenses /
-                ratingData.data.form990.totalExpenses;
-            }
-            var fundRatio =
-              ratingData.data.financialRating.performanceMetrics
-                .fundraisingExpensesRatio;
-            if (typeof fundRatio !== "number") {
-              fundRatio =
-                ratingData.data.form990.fundraisingExpenses /
-                ratingData.data.form990.totalExpenses;
-            }
-            charityObj.currentRating = ratingData.data.rating;
-            charityObj.currentScore = ratingData.data.score;
-            charityObj.ratingDate = ratingData.data.publicationDate;
-            charityObj.ratingImg = ratingData.data.ratingImage.large;
-            charityObj.fundraisingExpenses =
-              ratingData.data.form990.fundraisingExpenses;
-            charityObj.administrativeExpenses =
-              ratingData.data.form990.administrativeExpenses;
-            charityObj.programExpenses =
-              ratingData.data.form990.programExpenses;
-            charityObj.totalExpenses = ratingData.data.form990.totalExpenses;
-            charityObj.totalRevenue = ratingData.data.form990.totalRevenue;
-            charityObj.totalExpenses = ratingData.data.form990.totalExpenses;
-            charityObj.totalContributions =
-              ratingData.data.form990.totalContributions;
-            charityObj.totalNetAssets = ratingData.data.form990.totalNetAssets;
-            charityObj.primaryRevenue = ratingData.data.form990.primaryRevenue;
-            charityObj.otherRevenue = ratingData.data.form990.otherRevenue;
-            charityObj.programExpensesRatio = progRatio;
-            charityObj.fundraisingExpenseRatio = fundRatio;
-            charityObj.administrationExpensesRatio = admRatio;
-            apiCall(urlAllAdvisories, function(advisoryData) {
-              var advisories = [];
-              for (var i = 0; i < advisoryData.data.length; i++) {
-                var advisory = {
-                  severity: advisoryData.data[i].severity,
-                  datePublished: advisoryData.data[i].datePublished,
-                  sources: advisoryData.data[i].sources
-                };
-                advisories.push(advisory);
-                charityObj.advisories = advisories;
-              }
-              res.render("charityInfo", charityObj);
-            });
-          });
-        });
+  // Load example page and pass in an example by id
+  app.get("/example/:id", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
+      res.render("example", {
+        example: dbExample
       });
     });
   });
@@ -327,6 +190,7 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+<<<<<<< HEAD
 };
 
 // function multiApiGet(ein) {
@@ -699,3 +563,6 @@ function apiCall(url, cb) {
 //     // ENTER ANY FUNCTION TO DO SOMETHING HERE
 //   });
 // });
+=======
+};
+>>>>>>> 3e8f1210bec6f9b7c274b88cae7bec8d0b320252
