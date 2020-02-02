@@ -2,7 +2,7 @@ var authCheck = function(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    console.log("/auth/login");
+    res.render("login")
   }
 };
 

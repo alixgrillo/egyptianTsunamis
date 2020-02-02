@@ -30,7 +30,7 @@ app.set("view engine", "handlebars");
 // Middleware
 app.use(
   cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 60 * 1000,
     keys: [keys.session.cookieKey]
   })
 );
@@ -55,12 +55,12 @@ app.get("/", authCheck, function(req, res) {
   console.log("server 54: " + req.user);
 });
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/
