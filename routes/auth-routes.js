@@ -10,10 +10,18 @@ router.get("/login", function(req, res) {
 router.get("/logout", function(req, res) {
   //handle with passport
   console.log("auth-routes 12 : Logging Out User: " + req.user.name);
-  req.logout();
-  res.redirect("/");
-  console.log("auth-routes (15) :" + req.user);
+  console.log("auth-routes 12 : Logging Out User: " + req.session);
+  res.clearCookie('sid', {path: '/'});
+  res.redirect('/');
+  req.logOut();
+  req.session=null;
+  delete req.session;
+  delete req.user;
+  req.user=null;
+  res.clearCookie('sid', {path: '/'});
+  res.redirect('/');
 });
+
 
 // Express middleware function for logging out a user. The action is successful
 // if the user is no longer authenticated.

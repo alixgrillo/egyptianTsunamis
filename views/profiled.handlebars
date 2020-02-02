@@ -42,33 +42,35 @@
     <h2>Recommended charities based on {{charities.categoryName}}</h2>
     <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save This
         Category</button>
+
+
     <div class="card-group">
-        {{#each savedCharities}}
-        <div class="card" id="saved-charities">
-            <div class="card-header">
-                {{charityName}}
-            </div>
+        {{#each charities}}
+        <div class="card" id="charity-cards">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-9">
-                        <h5 class="card-title">{{tagLine}}</h5>
+                        <h5 class="card-title">{{name}}</h5>
                     </div>
                     <div class="col-lg-3">
                         <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
                             data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
                             id="{{ein}}">
-                            <i class="fa fa-info"> Get More Information</i>
+                            <i class="fa fa-info"></i>
                         </a>
                     </div>
+
                 </div>
-                <p class="card-text">Mission: {{mission}}</p>
+                <p class="card-text">{{tagLine}}</p>
                 <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+
             </div>
         </div>
         {{/each}}
     </div>
-
 </div>
+
+
 {{!-- <h2>Recommended charities</h2>
 <div class="card-group">
     {{#each charities}}
@@ -93,4 +95,3 @@
         </div>
     </div>
     {{/each}} --}}
-</div>
