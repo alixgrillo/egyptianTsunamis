@@ -224,16 +224,17 @@ module.exports = function(app) {
 
   app.get("/api/profile", function(req, res) {
     console.log("hit");
+    console.log("(line 227 )" + req.session.passport.user);
     var hndbrsObj = {};
     db.Charity.findAll({
       where: {
-        UserId: 1
+        UserId: req.session.passport.user
       },
       include: [db.User]
     }).then(function(dbUser) {
       db.UserCategory.findAll({
         where: {
-          UserId: 1
+          UserId: req.session.passport.user
         },
         include: [db.Category]
       }).then(function(dbCategory) {
