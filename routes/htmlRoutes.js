@@ -190,7 +190,6 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
-<<<<<<< HEAD
 };
 
 // function multiApiGet(ein) {
@@ -563,6 +562,3 @@ function apiCall(url, cb) {
 //     // ENTER ANY FUNCTION TO DO SOMETHING HERE
 //   });
 // });
-=======
-};
->>>>>>> 3e8f1210bec6f9b7c274b88cae7bec8d0b320252
