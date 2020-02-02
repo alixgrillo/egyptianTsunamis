@@ -1,51 +1,74 @@
 <div class="wrapper-main">
-
-<h2>More information about user</h2> 
-
-<h2>Your Saved Charities</h2>
-<div class="card-group">
-    {{#each savedCharities}}
-    <div class="card" id="saved-charities">
-        <div class="card-header">
-            {{charityName}}
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-9">
-                    <h5 class="card-title">{{tagLine}}</h5>
-                </div>
-                <div class="col-lg-3">
-                    <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
-                        id="{{ein}}">
-                        <i class="fa fa-info"> Get More Information</i>
-                    </a>
-                </div>
-
-            </div>
-            <p class="card-text">Mission: {{mission}}</p>
-            <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
-
-        </div>
-    </div>
-    {{/each}}
+<div class="wrapper-header">
+    <h2 id="profileHeader">Welcome to your profile page</h2>
 </div>
 
-<h1 class="browse-fdr-category-header dna-h2">Your Saved Charity Categories</h1>
+
+    {{!-- <body> --}}
+<div class="wrapper-main">
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="jumbotron jumbotron2">
+            <div class="container">
+                    <h2 id="savedCharitiesHeader">Your Saved Charities</h2>
+            </div>
+        </div>
+        <div class="browse-fdr-category">
+            <div class="dna-grid-container">
+                <section class="dna-grid-row categories">
+
+                    <h1 class="browse-fdr-category-header dna-h2" id="savedCharitiesCategories">Browse by fundraising category</h1>
                     <br>
-                    {{#each savedCategories}}
+                    {{#each categories}}
                     <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="/category/{{categoryID}}"
                         data-analytics-subtype="button" data-analytics-eventvalue={{category}}
                         data-analytics-pagesection="categories" id={{categoryID}}>
-                        <i class="{{Category.iconName}}"> {{category}}</i>
+                        <i class="{{iconName}}"> {{category}}</i>
                     </a>
                     {{/each}}
 
+                  
+            </div>
+            <br>
+            <br>
+            <section class=" dna-grid-row">
+                <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
+                </div>
+          
+        </div>
+    </section>
 
+    <h2>Recommended charities based on {{charities.categoryName}}</h2>
+    <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save This
+        Category</button>
+    <div class="card-group">
+        {{#each savedCharities}}
+        <div class="card" id="saved-charities">
+            <div class="card-header">
+                {{charityName}}
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h5 class="card-title">{{tagLine}}</h5>
+                    </div>
+                    <div class="col-lg-3">
+                        <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
+                            id="{{ein}}">
+                            <i class="fa fa-info"> Get More Information</i>
+                        </a>
+                    </div>
+                </div>
+                <p class="card-text">Mission: {{mission}}</p>
+                <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 
-
-
-
+</div>
 {{!-- <h2>Recommended charities</h2>
 <div class="card-group">
     {{#each charities}}
