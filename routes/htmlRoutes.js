@@ -222,18 +222,19 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/profile", function(req, res) {
+  app.get("/api/profile", function(req, res) {
     console.log("hit");
+    console.log("(line 227 )" + req.session.passport.user);
     var hndbrsObj = {};
     db.Charity.findAll({
       where: {
-        UserId: 1
+        UserId: req.session.passport.user
       },
       include: [db.User]
     }).then(function(dbUser) {
       db.UserCategory.findAll({
         where: {
-          UserId: 1
+          UserId: req.session.passport.user
         },
         include: [db.Category]
       }).then(function(dbCategory) {
@@ -268,12 +269,12 @@ module.exports = function(app) {
             hndbrsObj.savedCategories = dbCategory;
 
             if (hndbrsObj.savedCharities.length === dbUser.length) {
-              res.render("profile", hndbrsObj);
+              res.render("profiled", hndbrsObj);
             }
           });
         }
         if (dbUser.length === 0) {
-          res.render("profile", hndbrsObj);
+          res.render("profiled", hndbrsObj);
         }
       });
     });
