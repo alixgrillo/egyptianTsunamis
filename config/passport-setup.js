@@ -9,8 +9,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  console.log("user de-serialised");
-console.log(id)
+  console.log("passport-setup(12): user de-serialised");
+console.log("passport-setup(13): " + id)
   db.User.findOne({ where:
     { id: id }
   }).then(function(user) {
@@ -28,6 +28,9 @@ passport.use(
       callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
+      console.log("passport-setup (31)");
+      console.log(profile.displayName);
+      console.log(profile.id);
       process.nextTick(function() {
       // check if user already exists in our own db
       db.User.findOne({ googleId: profile.id }).then(function(currentUser) {
@@ -41,7 +44,7 @@ passport.use(
             name: profile.displayName,
             googleId: profile.id
           }).then(function(newUser) {
-            console.log("new user created: " + newUser.name);
+            console.log("passport-setup(47): new user created: " + newUser.name);
             return done(null, newUser);
           });
         }

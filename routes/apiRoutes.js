@@ -70,7 +70,7 @@ module.exports = function(app) {
       process.env.APP_ID +
       "&app_key=" +
       process.env.APP_KEY;
-    console.log(url + "line 52");
+    console.log("apiRoutes (73): "+url);
     apiCall(url, function(result) {
       var charity = {
         charityNavigatorURL: result.data.charityNavigatorURL,
