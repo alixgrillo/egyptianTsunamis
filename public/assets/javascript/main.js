@@ -69,6 +69,7 @@ $(document).ready(function() {
       charityEin: ein
     };
     API.saveCharity(ein).then(function(data) {
+      console.log("main (72)");
       console.log(data);
     });
   });
@@ -83,6 +84,7 @@ $(document).ready(function() {
       CategoryId: catId
     };
     API.saveCategory(category).then(function(data) {
+      console.log("main 87:")
       console.log(data);
     });
   });

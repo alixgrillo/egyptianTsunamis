@@ -1,4 +1,4 @@
-const router = require('express').Router();
+var router = require('express').Router();
 
 router.get('/', (req, res) => {
     res.render("profiled", authCheck, {user: req.session.passport})

@@ -31,7 +31,7 @@ app.set("view engine", "handlebars");
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey],
+    keys: [keys.session.cookieKey]
   })
 );
 //initialize passport
@@ -75,6 +75,6 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 //logged passportSetup so lint will stop throwing errors
-console.log("passportSetup: "+ passportSetup);
+console.log("passportSetup: " + passportSetup);
 
 module.exports = app;
