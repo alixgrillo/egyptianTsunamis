@@ -35,6 +35,15 @@ hr {
   font-size: medium;
 }
 
+#loginprompt {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(92, 238, 231);
+  margin-right: 40px;
+}
+
 .jumbotron {
   background-size: cover;
   background-repeat: no-repeat;
