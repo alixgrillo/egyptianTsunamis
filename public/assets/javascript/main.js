@@ -84,9 +84,13 @@ $(document).ready(function() {
       CategoryId: catId
     };
     API.saveCategory(category).then(function(data) {
-      console.log("main 87:")
+      console.log("main 87:");
       console.log(data);
     });
+  });
+
+  API.getSavedCharities().then(function(data) {
+    console.log(data);
   });
 
   // API.getSavedCharities();

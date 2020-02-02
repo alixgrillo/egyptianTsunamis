@@ -222,7 +222,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/profile", function(req, res) {
+  app.get("/api/profile", function(req, res) {
     console.log("hit");
     var hndbrsObj = {};
     db.Charity.findAll({
@@ -273,7 +273,7 @@ module.exports = function(app) {
           });
         }
         if (dbUser.length === 0) {
-          res.render("profile", hndbrsObj);
+          res.render("profiled", hndbrsObj);
         }
       });
     });
