@@ -269,7 +269,7 @@ module.exports = function(app) {
             hndbrsObj.savedCategories = dbCategory;
 
             if (hndbrsObj.savedCharities.length === dbUser.length) {
-              res.render("profile", hndbrsObj);
+              res.render("profiled", hndbrsObj);
             }
           });
         }
