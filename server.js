@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var authRoutes = require("./routes/auth-routes");
 var authCheck = require("./routes/profile-routes");
+var profiled = require("./routes/profiled-routes");
 var passportSetup = require("./config/passport-setup");
 var Handlebars = require("handlebars");
 var HandlebarsIntl = require("handlebars-intl");
@@ -42,7 +43,7 @@ app.use(express.json());
 //app.use(express.static("public"));
 app.use(express.static(__dirname + "/public"));
 app.use("/auth", authRoutes);
-// app.use("/profile", profileRoutes);
+app.use("/profiled", profiled);
 
 // Routes
 require("./routes/apiRoutes")(app);
