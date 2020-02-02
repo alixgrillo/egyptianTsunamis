@@ -36,12 +36,19 @@ hr {
 }
 
 .jumbotron {
-  background-image: url(../assets/images/hands.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 600px;
   border-bottom: 3px solid gray;
   position: relative;
+}
+
+.jumbotron1 {
+  background-image: url(../assets/images/hands.jpg);
+}
+
+.jumbotron2 {
+  background-image: url(../assets/images/hands-blank.jpg);
 }
 
 #giveButton {
@@ -59,6 +66,27 @@ hr {
 
 #giveButton:hover {
   background-color: gray;
+}
+
+#savedCharitiesHeader, #savedCharitiesCategories {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 35px;
+  font-weight: bold;
+  color: lightseagreen;
+  margin-right: 40px;
+}
+
+.wrapper-header {
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  color: lightseagreen;
+}
+
+#profileHeader {
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .fundingTag {

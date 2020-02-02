@@ -1,0 +1,79 @@
+<div class="wrapper-header">
+
+    <h2 id="profileHeader">{{user.name}}'s Profile Page</h2>
+</div>
+
+    <div class="wrapper-main">
+            <div class="jumbotron jumbotron2">
+                <div class="container">
+                    <h2 id="savedCharitiesHeader">Your Saved Charities</h2>
+                    <div class="card-group">
+                        {{#each savedCharities}}
+                        <div class="card" id="saved-charities">
+                            <div class="card-header">
+                                {{charityName}}
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h5 class="card-title">{{tagLine}}</h5>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                                            data-analytics-eventvalue="Get More Information"
+                                            data-analytics-pagesection="categories" id="{{ein}}">
+                                            <i class="fa fa-info"> Get More Information</i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <p class="card-text">Mission: {{mission}}</p>
+                                <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}}
+                                        alt="..."></p>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+
+                    <h1 class="browse-fdr-category-header dna-h2" id="savedCharitiesCategories">Your Saved Charity Categories</h1>
+                    <br>
+                    {{#each savedCategories}}
+                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="/category/{{categoryID}}"
+                        data-analytics-subtype="button" data-analytics-eventvalue={{category}}
+                        data-analytics-pagesection="categories" id={{categoryID}}>
+                        <i class="{{Category.iconName}}"> {{category}}</i>
+                    </a>
+                    {{/each}}
+
+                </div>
+            </div>
+
+            <h2>Recommended charities</h2>
+            <div class="card-group">
+                {{#each charities}}
+                <div class="card" id="charity-cards">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h5 class="card-title">{{name}}</h5>
+                            </div>
+                            <div class="col-lg-3">
+                                <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                                    data-analytics-eventvalue="Get More Information"
+                                    data-analytics-pagesection="categories" id="{{ein}}">
+                                    <i class="fa fa-info"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <p class="card-text">{{tagLine}}</p>
+                        <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="...">
+                        </p>
+
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </section>
+    </div>
+</div>
