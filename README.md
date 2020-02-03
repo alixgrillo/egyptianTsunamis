@@ -1,7 +1,7 @@
 # HopeLine
 Interested in getting more information about your favorite charities. Create a profile and access detailed information about the location, mission, and expenses of a charity using our HopeLine application. 
 
-<!-- Access this site at: https://still-wave-02149.herokuapp.com/. -->
+Access this site at: https://egyptian-tsunamis.herokuapp.com/.
 
 ## Table of Contents
 * [About](#about)
@@ -18,17 +18,21 @@ This is a full stack deployed website that allows the user login via oAuth throu
 ## Functionality
 The user will start on the landing page. 
 
-<!-- <img src="public/assets/img/home-page.gif"> -->
+<img src="/assets/images/login.gif">
 
-They can view some intial charities without a category filter, or when they choose one of the categories, the charities will filter to those. Note: the filter will always show the highest rated charities.
+They can view some intial charities without a category filter By logging in, the user will be able to save categories and charities to their profile.
 
-<!-- <img src="public/assets/img/add-a-burger.gif"> -->
+<img src="/assets/images/category.gif">
 
-By logging in, they user will be directed to their profile page. On this page, they will see a profile page tailored to their saved charities and saved categories.
-<!-- 
-<img src="public/assets/img/eat-a-burger.gif"> -->
+If a user wants to filter on a category, they can click on one to get the highest rated charities in that category.
+
+<img src="/assets/images/charity.gif">
 
 By clicking on more information for any charity, it will display a charity-specific page that gives more detail about the charity, including the mission, expenses, revenue, and location.
+
+<img src="/assets/images/profile.gif">
+
+The user can save a category and a charity and it will display on their profile page for their immediate use.
 
 ## Technical Features
 * This application uses a Model-View-Controller (MVC) model with Handlebars connected to a MySQL database to determine what will render on the browser for the user.
@@ -37,7 +41,7 @@ By clicking on more information for any charity, it will display a charity-speci
 * Content is sent to Handlebars.js that controls the HTML content.
 
 ## Requirements
-If you are running from the deployed Heroku site, then there are no requirements to use. You can access directly at https://still-wave-02149.herokuapp.com/.
+If you are running from the deployed Heroku site, then there are no requirements to use. You can access directly at https://egyptian-tsunamis.herokuapp.com/.
 
 If you would like to fork this application and run directly, then you will need to run:
 `npm install`
