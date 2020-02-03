@@ -28,7 +28,7 @@
                                             data-analytics-eventvalue="Get More Information"
                                             data-analytics-pagesection="categories" id="{{ein}}">
                                             <div id="info-button">
-                                            <i class="fa fa-info"> Click for Information</i>
+                                                <i class="fa fa-info"> Click for Information</i>
                                             </div>
                                         </a>
                                     </div>
@@ -58,19 +58,6 @@
             <div class="browse-fdr-category">
                 <div class="dna-grid-container">
                     <section class="dna-grid-row categories">
-
-                        {{!-- <h1 class="browse-fdr-category-header dna-h2" id="savedCharitiesCategories">Browse by
-                            fundraising category</h1>
-                        <br>
-                        {{#each categories}}
-                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="/category/{{categoryID}}"
-                            data-analytics-subtype="button" data-analytics-eventvalue={{category}}
-                            data-analytics-pagesection="categories" id={{categoryID}}>
-                            <i class="{{iconName}}"> {{category}}</i>
-                        </a>
-                        {{/each}} --}}
-
-
                 </div>
                 <br>
                 <br>
@@ -82,7 +69,29 @@
         </section>
 
         <h2>Top Rated Charities</h2>
-        <div class="card-group">
+
+        <div class="container">
+            <div class="row styled-row">
+                {{#each topRatedCharities}}
+                <div class="card prof-card" id="charity-cards">
+                    <div class="card-title">{{name}}</div>
+                        <p class="card-text-margin">{{tagLine}}</p>
+                        <p class="card-text-margin">Current Rating: {{currentRating}} /4 <img class="stars"
+                                src={{currentRatingImg}} alt="...">
+                        </p>
+                        <a class="more-info card-text-margin" href="/charity/{{ein}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
+                            id="{{ein}}">more info
+                            <i class="fa fa-info-circle fa-style" aria-hidden="true"></i>
+                        </a>
+                        <p class="card-text-margin">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+                    </div>
+                
+                {{/each}}
+            </div>
+        </div>
+
+        {{!-- <div class="card-group">
             {{#each topRatedCharities}}
             <div class="card" id="saved-charities">
                 <div class="card-header">
@@ -107,8 +116,7 @@
                 </div>
             </div>
             {{/each}}
-        </div>
+        </div> --}}
 
     </div>
 </div>
-

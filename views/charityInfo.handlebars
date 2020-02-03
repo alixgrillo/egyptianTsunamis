@@ -3,7 +3,6 @@
     <!-- Home Section -->
     <section id="home">
         <div class="container">
-
             <h1 class="browse-fdr-category-header dna-h2 charityName">{{charityName}}</h1>
             <div class="row">
                 <div class="col-lg-9">
@@ -15,8 +14,8 @@
                     <p class="spacing"><span class="title">Current Score: </span>{{currentScore}}</p>
                     <p class="spacing"><span class="title">Rating published as of
                         </span>{{formatDate ratingDate day="numeric" month="long" year="numeric"}}</p>
-
                 </div>
+
                 <div class="col-lg-3">
                     <div class="row">
                         <button class="btn btn-outline-info btn-lg charityBtn" id="saveCharity" data-ein="{{ein}}">Save
@@ -38,9 +37,7 @@
                             id="contact">Contact
                             Charity</a>
                     </div>
-
                 </div>
-
 
             </div>
 
@@ -67,9 +64,10 @@
                     <canvas id="expenses"></canvas>
                 </div>
             </div>
+
             <br>
+
             <div class="container definition-container">
-                {{!-- <div class="row"> --}}
                 <p id="definition-title">Definitions</p>
                 <p class="definitionText"><span class="definitions">Total Contributions: </span>Total contributions is
                     the sum of all contributions - including gifts, and grants, federated campaigns,
@@ -95,136 +93,121 @@
                     costs, and organizational meetings.</p>
             </div>
         </div>
-</div>
+    </section>
+   
 
-</section>
-<br>
-</div>
+    <h2 id="recommended-caused">Recommended charities with the same cause: <span id="cause-name">({{causeName}})</span>
+    </h2>
+    <br>
 
-<h2 id="recommended-caused">Recommended charities with the same cause: <span id="cause-name">({{causeName}})</span></h2>
-<div class="card-group">
-    {{#each charities}}
-    <div class="card" id="charity-cards">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-9">
-                    <h5 class="card-title">{{name}}</h5>
-                </div>
-                <div class="col-lg-3">
-                    <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
-                        id="{{ein}}">
-                        <i class="fa fa-info"></i>
-                    </a>
-                </div>
-
+       <div class="container">
+            <div class="row styled-row">
+                {{#each charities}}
+                <div class="card prof-card" id="charity-cards">
+                    <div class="card-title">{{name}}</div>
+                        <p class="card-text-margin">{{tagLine}}</p>
+                        <p class="card-text-margin">Current Rating: {{currentRating}} /4 <img class="stars"
+                                src={{currentRatingImg}} alt="...">
+                        </p>
+                        <a class="more-info card-text-margin" href="/charity/{{ein}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
+                            id="{{ein}}">more info
+                            <i class="fa fa-info-circle fa-style" aria-hidden="true"></i>
+                        </a>
+                        <p class="card-text-margin">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
+                    </div>
+                
+                {{/each}}
             </div>
-            <p class="card-text">{{tagLine}}</p>
-            <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
-
         </div>
-    </div>
-    {{/each}}
-</div>
 
-
-
-
-
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="handlebars/dist/handlebars.js"></script>
-<script>
-
-
-    var ctx = $("#expenses");
-
-    var data = {
-        datasets: [
-            {
-                data: [
-                    {{ programExpenses }},
-            {{ fundraisingExpenses }},
-        {{ administrativeExpenses }}        
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+    <script>
+        var ctx = $("#expenses");
+        var data = {
+            datasets: [
+                {
+                    data: [
+                        {{ programExpenses }},
+                {{ fundraisingExpenses }},
+            {{ administrativeExpenses }}        
                 ],
-    backgroundColor: [
-        "rgb(32,178,170)",
-        "rgb(97,32,178)",
-        "	rgb(178,32,40)"
-    ]
+        backgroundColor: [
+            "rgb(32,178,170)",
+            "rgb(97,32,178)",
+            "	rgb(178,32,40)"
+        ]
               }
             ],
-    labels: [
-        "Program Expenses",
-        "Fundraising Expenses",
-        "Administrative Expenses"
-    ]
+        labels: [
+            "Program Expenses",
+            "Fundraising Expenses",
+            "Administrative Expenses"
+        ]
           };
 
-    var chart = new Chart(ctx, {
-        type: "doughnut",
-        data: data,
-        options: {
-            title: {
-                display: true,
-                text: "Distribution of Expenses"
+        var chart = new Chart(ctx, {
+            type: "doughnut",
+            data: data,
+            options: {
+                title: {
+                    display: true,
+                    text: "Distribution of Expenses"
+                }
             }
-        }
-    });
+        });
 
-    $("#expenses").append(chart);
-
-    var ctx2 = $("#cont2exp");
-
-    var data = {
-        datasets: [
-            {
-                data: [
-                    {{ totalExpenses }},
-            {{ totalRevenue }},
-        {{ totalContributions }}
+        $("#expenses").append(chart);
+        var ctx2 = $("#cont2exp");
+        var data = {
+            datasets: [
+                {
+                    data: [
+                        {{ totalExpenses }},
+                {{ totalRevenue }},
+            {{ totalContributions }}
                 ],
-    backgroundColor: [
-        "rgb(178,32,113)",
-        "rgb(32,113,178)",
-        "rgb(113,178,32)",
-    ]
+        backgroundColor: [
+            "rgb(178,32,113)",
+            "rgb(32,113,178)",
+            "rgb(113,178,32)",
+        ]
               }
             ],
-    labels: [
-        "Total Expenses",
-        "Total Revenue",
-        "Total Contributions"
-    ]
+        labels: [
+            "Total Expenses",
+            "Total Revenue",
+            "Total Contributions"
+        ]
           };
 
-    var chart2 = new Chart(ctx2, {
-        type: "horizontalBar",
-        data: data,
-        options: {
-            title: {
-                display: true,
-                text: "Expenses, Revenue and Contributions"
-            },
-            scales: {
-                xAxes: [{
-                    stacked: true
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            },
-            legend: {
-                display: false
+        var chart2 = new Chart(ctx2, {
+            type: "horizontalBar",
+            data: data,
+            options: {
+                title: {
+                    display: true,
+                    text: "Expenses, Revenue and Contributions"
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                legend: {
+                    display: false
+                }
             }
+        });
+
+        $("#cont2exp").append(chart2);
+
+        function formatNumber(num) {
+            return console.log(num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
         }
-    });
-
-    $("#cont2exp").append(chart2);
-
-    function formatNumber(num) {
-        return console.log(num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
-    }
-
-
-</script>
+    </script>
