@@ -11,17 +11,16 @@ router.get("/logout", function(req, res) {
   //handle with passport
   // console.log("auth-routes 12 : Logging Out User: " + req.user.name);
   // console.log("auth-routes 12 : Logging Out User: " + req.session);
-  res.clearCookie('sid', {path: '/'});
-  res.redirect('/');
+  res.clearCookie("sid", { path: "/" });
+  res.redirect("/");
   req.logOut();
-  req.session=null;
+  req.session = null;
   delete req.session;
   delete req.user;
-  req.user=null;
-  res.clearCookie('sid', {path: '/'});
-  res.redirect('/');
+  req.user = null;
+  res.clearCookie("sid", { path: "/" });
+  res.redirect("/");
 });
-
 
 // Express middleware function for logging out a user. The action is successful
 // if the user is no longer authenticated.
@@ -36,17 +35,20 @@ router.get("/logout", function(req, res) {
 // });
 
 //auth with google
-router.get("/google", passport.authenticate("google", {
+router.get(
+  "/google",
+  passport.authenticate("google", {
     scope: ["profile"]
-  }));
+  })
+);
 
 //callback for google to redirect to
-router.get("/google/redirect", passport.authenticate("google", 
-  { 
-    successRedirect: '/',
-    failureRedirect: '/auth/login'
-}
-));
-
+router.get(
+  "/google/redirect",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login"
+  })
+);
 
 module.exports = router;
