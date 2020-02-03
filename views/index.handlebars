@@ -3,11 +3,8 @@
 
     <!-- Home Section -->
     <section id="home">
-        <div class="jumbotron jumbotron1">
-            <div class="container">
-                <a class="btn btn-primary btn-lg" href="views/about" role="button" id="giveButton">Learn More</a>
-            </div>
-        </div>
+
+        <div class="jumbotron jumbotron1"></div>
         <div class="browse-fdr-category">
             <div class="dna-grid-container">
                 <section class="dna-grid-row categories">
@@ -41,8 +38,7 @@
                             <i class="fa fa-globe"> International Aid</i>
                         </a> --}}
             </div>
-            <br>
-            <br>
+
             <section class=" dna-grid-row">
                 <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
                 </div>
@@ -65,14 +61,57 @@
         </div>
     </section>
 
-    
-    <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save Current
-        Category</button>
-        <br>
-        <br>
-        <h2>Recommended charities based on {{charities.categoryName}}</h2>
+    <br>
+    <br>
+    <div class="text-center">
+        <h2 class="dna-h2">Recommended charities based on {{charities.categoryName}}</h2>
+        <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}"
+            data-id="{{charities.categoryID}}">Save Current
+            Category</button>
+    </div>
+    </section>
+    <br>
 
-    <div class="card-group">
+    <div class="container">
+        <div class="row">
+            {{#each charities}}
+            <div class="col-sm-3">
+                <div class="card" id="charity-cards">
+                    <div class="card-block">
+                        <h4 class="card-title">{{name}}</h4>
+
+                        <p class="card-text">{{tagLine}}</p>
+                        <p class="card-text">Current Rating: {{currentRating}} /4 <img class="stars"
+                                src={{currentRatingImg}} alt="...">
+                        </p>
+                        <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
+                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
+                            id="{{ein}}">more info
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+
+    {{!--  
+        
+        <div class="card" id="charity-cards">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h5 class="card-title"></h5>
+                    </div>
+                    <div class="col-lg-3">
+                      
+                    </div>
+
+                </div> --}}
+
+    {{!-- <div class="card-group">
         {{#each charities}}
         <div class="card" id="charity-cards">
             <div class="card-body">
@@ -95,13 +134,13 @@
             </div>
         </div>
         {{/each}}
-    </div>
+    </div> --}}
 </div>
-</body>
 
 
 
-    <!-- <div class="card">
+
+<!-- <div class="card">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
@@ -152,9 +191,9 @@
         </div>
     </div> -->
 
-    {{!-- </body> --}}
+{{!-- </body> --}}
 
-    <!-- <div id="home">
+<!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">

@@ -86,6 +86,15 @@ hr {
   margin-right: 40px;
 }
 
+.dna-h2 {
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+  margin-right: 40px;
+}
+
 .wrapper-header {
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -96,6 +105,13 @@ hr {
 #profileHeader {
   font-size: 35px;
   font-weight: bold;
+}
+
+#saveCategory {
+font-size: large;
+border-radius: 10px;
+border-color: rgb(18, 95, 91);
+border-width: 2px;
 }
 
 .fundingTag {
@@ -121,7 +137,7 @@ margin: 20px;
 .card-group {
   margin-top: 30px;
 }
-/* oauth */
+
 body{
   font-family: arial;
   margin: 0;
@@ -233,8 +249,27 @@ main,header{
 .center{
   text-align: center;
 }
-.charityBtn{
+
+#info-button {
+  font-size: x-small;
+}
+
+.charityBtn {
+  color: rgb(18, 95, 91);
+  border-radius: 10px;
+  width: 200px;
   margin: 1%;
+}
+
+.definitionText {
+  font-size: x-small;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.definition-container {
+  outline: 2px solid rgb(18, 95, 91);
 }
 
 #saved-charities-block {
@@ -255,6 +290,49 @@ font-size: small;
 
 #info-button {
   font-size: x-small;
+}
+
+.card{
+font-size: small;
+border-color: lightseagreen;
+border-width: 2px;
+border-radius: 10px;
+width: 250px;
+margin-bottom: 10px;
+}
+
+.card-block {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.card-title {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+}
+
+.stars {
+  height: 13px;
+}
+
+.fa {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > div[class*='col-'] {
+ display: flex;
 }
 
 .charityName {
