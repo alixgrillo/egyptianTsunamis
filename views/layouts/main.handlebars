@@ -30,19 +30,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mr-auto">
+            
             <li class="nav-item med active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link show-on-login" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="med nav-item">
-                <a class="nav-link" id="btn-login" disabled="false">Log
-                    in</a>
+                <a class="nav-link show-on-logout" id="btn-login" disabled="false">Log in</a>
             </li>
             <li class="nav-item med">
-                <a class="nav-link" href="/auth/logout" id="btn-logout" disabled="true" onclick="logout()">Log
-                    Out</a>
+                <a class="nav-link show-on-login" href="/auth/logout" id="btn-logout" disabled="true"
+                    onclick="logout()">Log Out</a>
             </li>
-             <li class="nav-item med">
-                <a class="nav-link" href="/profiled" id="btn-profile" disabled="true">Profile</a>
+            <li class="nav-item med">
+                <a class="nav-link show-on-login" href="/profiled" id="btn-profile" disabled="true">Profile</a>
             </li>
         </ul>
     </div>
@@ -53,10 +53,10 @@
 <div id="loginModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content text-center">
         <span class="close">&times;</span>
-        <p>Please Log In</p>
-        <a class="google-btn" href="/auth/google">Google+</a>
+        <p id="modal-text">Please Log In</p>
+        <a class="google-btn" href="/auth/google">Google</a>
     </div>
     <script>
         // Get the modal

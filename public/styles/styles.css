@@ -158,20 +158,17 @@ main,header{
 .google-btn{
   color: #fff;
   text-decoration: none;
-  font-size: 18px;
-  padding: 10px;
-  background: #ff5353;
+  font-size: 23px;
+  padding: 20px;
+  background:blue;
 }
-
-
-
 
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
+  margin-left: auto;
+  margin-right: auto;
   width: 300px; /* Full width */
   height: 300px; /* Full height */
   background-color: rgb(0,0,0); /* Fallback color */
@@ -180,18 +177,23 @@ main,header{
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: lightseagreen;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  padding: 10px;
+  border: 5px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+#modal-text {
+  font-size: medium;
+  font-weight: bold;
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: rgb(18, 95, 91);
   float: right;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
 }
 
