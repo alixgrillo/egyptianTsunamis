@@ -86,6 +86,15 @@ hr {
   margin-right: 40px;
 }
 
+.dna-h2 {
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+  margin-right: 40px;
+}
+
 .wrapper-header {
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -96,6 +105,13 @@ hr {
 #profileHeader {
   font-size: 35px;
   font-weight: bold;
+}
+
+#saveCategory {
+font-size: large;
+border-radius: 10px;
+border-color: rgb(18, 95, 91);
+border-width: 2px;
 }
 
 .fundingTag {
@@ -121,7 +137,7 @@ margin: 20px;
 .card-group {
   margin-top: 30px;
 }
-/* oauth */
+
 body{
   font-family: arial;
   margin: 0;
@@ -233,25 +249,7 @@ main,header{
 .center{
   text-align: center;
 }
-.charityBtn{
-  margin: 1%;
-}
 
-#saved-charities-block {
-  font-size: x-small;
-  max-width: 300px;
-  max-height: 500px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-style: oblique;
-  font-size: 20px;
-  font-weight: bold;
-  color: rgb(18, 95, 91);
-  margin-right: 40px;
-}
-
-.card-body .card-text{
-font-size: small;
-}
 
 #info-button {
   font-size: x-small;
@@ -315,4 +313,63 @@ margin-top: 40px;
 
 #cause-name {
   color: lightseagreen;
+}
+
+.charityBtn{
+  margin: 1%;
+}
+
+#saved-charities-block {
+  font-size: x-small;
+  max-width: 300px;
+  max-height: 500px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+  margin-right: 40px;
+}
+
+.card{
+font-size: small;
+border-color: lightseagreen;
+border-width: 2px;
+border-radius: 10px;
+width: 250px;
+margin-bottom: 10px;
+}
+
+.card-block {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.card-title {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+}
+
+.stars {
+  height: 13px;
+}
+
+.fa {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > div[class*='col-'] {
+ display: flex;
 }
