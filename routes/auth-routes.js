@@ -9,8 +9,8 @@ router.get("/login", function(req, res) {
 //auth logout
 router.get("/logout", function(req, res) {
   //handle with passport
-  console.log("auth-routes 12 : Logging Out User: " + req.user.name);
-  console.log("auth-routes 12 : Logging Out User: " + req.session);
+  // console.log("auth-routes 12 : Logging Out User: " + req.user.name);
+  // console.log("auth-routes 12 : Logging Out User: " + req.session);
   res.clearCookie('sid', {path: '/'});
   res.redirect('/');
   req.logOut();

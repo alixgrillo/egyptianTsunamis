@@ -3,6 +3,9 @@ var authCheck = require("./profile-routes");
 var db = require("../models");
 var axios = require("axios");
 
+router.get("/about", (req, res) => {
+  res.render("about")
+})
 
 router.get('/', (req, res) => {
     //res.render("profiled", {user: req.session.passport})
