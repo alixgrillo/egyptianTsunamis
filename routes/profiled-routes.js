@@ -3,6 +3,8 @@ var authCheck = require("./profile-routes");
 var db = require("../models");
 var axios = require("axios");
 
+console.log(authCheck);
+
 router.get("/about", function(req, res) {
   res.render("about");
 });
