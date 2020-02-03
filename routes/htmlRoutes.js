@@ -223,8 +223,6 @@ module.exports = function(app) {
   });
 
   app.get("/api/profile", function(req, res) {
-    console.log("hit");
-    console.log("(line 227 )" + req.session.passport.user);
     var hndbrsObj = {};
     db.Charity.findAll({
       where: {
