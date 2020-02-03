@@ -254,3 +254,63 @@ font-size: small;
 #info-button {
   font-size: x-small;
 }
+
+.charityName {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  text-decoration: underline;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+}
+
+.title {
+  color: rgb(18, 95, 91);
+  font-size: medium;
+  font-style: italic;
+}
+
+.spacing {
+  margin-bottom: 20px;
+}
+
+.charityBtn {
+  color: rgb(18, 95, 91);
+  border-radius: 10px;
+  width: 200px;
+}
+
+.definitionText {
+  font-size: x-small;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.definitions {
+  font-size:small;
+  font-style: italic;
+  color: rgb(18, 95, 91);
+}
+
+.definition-container {
+  outline: 2px solid rgb(18, 95, 91);
+}
+
+#definition-title {
+  font-size: medium;
+  color:rgb(18, 95, 91);
+  font-weight: bold;
+}
+
+#recommended-caused {
+color:rgb(18, 95, 91);
+margin-left: 50px;
+font-style: oblique;
+margin-top: 40px;
+}
+
+#cause-name {
+  color: lightseagreen;
+}
