@@ -18,62 +18,25 @@
                         <i class="{{iconName}}"> {{category}}</i>
                     </a>
                     {{/each}}
-
-                    {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Animals and pets" data-analytics-pagesection="categories">
-                            <i class="fa fa-paw"> Animals and Pets</i>
-
-                        </a>
-                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Local community" data-analytics-pagesection="categories">
-                            <i class="fa fa-home"> Local community</i>
-                        </a>
-                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Sports" data-analytics-pagesection="categories">
-                            <i class="fa fa-football-ball"> Sports</i>
-                        </a>
-                        <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-
-                            data-analytics-eventvalue="International aid" data-analytics-pagesection="categories">
-                            <i class="fa fa-globe"> International Aid</i>
-                        </a> --}}
             </div>
 
             <section class=" dna-grid-row">
                 <div class="dna-grid-col-s-12 dna-grid-col-m-6 dna-grid-col-l-12 dna-grid-row category-container">
                 </div>
-                {{!-- <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Disability" data-analytics-pagesection="categories">
-                        <i class="fa fa-wheelchair"> Disability</i>
-                    </a>
-                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Local community" data-analytics-pagesection="categories">
-                        <i class="fa fa-home"> Local community</i>
-                    </a>
-                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Sports" data-analytics-pagesection="categories">
-                        <i class="fa fa-football-ball"> Sports</i>
-                    </a>
-                    <a class="dna-grid-col-l-3 category-wrapper fundingTag" href="" data-analytics-subtype="button"
-                        data-analytics-eventvalue="Health and medical" data-analytics-pagesection="categories">
-                        <i class="fa fa-stethoscope"> Health and Medical</i>
-                    </a> --}}
         </div>
     </section>
-
     <br>
     <br>
     <div class="text-center">
-        <h2 class="dna-h2">Recommended charities based on {{charities.categoryName}}</h2>
+        <h2 class="dna-h2">Recommended charities based on: <span id="charSpan">{{charities.categoryName}}</span></h2>
         <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}"
             data-id="{{charities.categoryID}}">Save Current
             Category</button>
     </div>
-    </section>
-    <br>
 
+    <br>
     <div class="container">
-        <div class="row">
+        <div class="row styled-row">
             {{#each charities}}
             <div class="col-sm-3">
                 <div class="card" id="charity-cards">
@@ -87,7 +50,7 @@
                         <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
                             data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
                             id="{{ein}}">more info
-                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <i class="fa fa-info-circle fa-style" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -95,139 +58,4 @@
             {{/each}}
         </div>
     </div>
-
-
-    {{!--  
-        
-        <div class="card" id="charity-cards">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <h5 class="card-title"></h5>
-                    </div>
-                    <div class="col-lg-3">
-                      
-                    </div>
-
-                </div> --}}
-
-    {{!-- <div class="card-group">
-        {{#each charities}}
-        <div class="card" id="charity-cards">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <h5 class="card-title">{{name}}</h5>
-                    </div>
-                    <div class="col-lg-3">
-                        <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
-                            data-analytics-eventvalue="Get More Information" data-analytics-pagesection="categories"
-                            id="{{ein}}">
-                            <i class="fa fa-info"></i>
-                        </a>
-                    </div>
-
-                </div>
-                <p class="card-text">{{tagLine}}</p>
-                <p class="card-text">Current Rating: {{currentRating}} <img src={{currentRatingImg}} alt="..."></p>
-
-            </div>
-        </div>
-        {{/each}}
-    </div> --}}
 </div>
-
-
-
-
-<!-- <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                        content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal
-                        height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal
-                        height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal
-                        height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-{{!-- </body> --}}
-
-<!-- <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="card" id="singleCharityInfo">
-  <canvas id="expenses"></canvas>
-</div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script src="/js/index.js"></script> -->
