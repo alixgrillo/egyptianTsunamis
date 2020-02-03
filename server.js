@@ -55,7 +55,7 @@ app.get("/", authCheck, function(req, res) {
   console.log("server 54: " + req.user);
 });
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

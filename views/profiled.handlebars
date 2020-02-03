@@ -14,7 +14,7 @@
                     <h2 id="savedCharitiesHeader">Your Saved Charities</h2>
                     <div class="card-group">
                         {{#each savedCharities}}
-                        <div class="card" id="saved-charities">
+                        <div class="card" id="saved-charities-block">
                             <div class="card-header">
                                 {{charityName}}
                             </div>
@@ -27,7 +27,9 @@
                                         <a class="more-info" href="/charity/{{ein}}" data-analytics-subtype="button"
                                             data-analytics-eventvalue="Get More Information"
                                             data-analytics-pagesection="categories" id="{{ein}}">
-                                            <i class="fa fa-info"> Get More Information</i>
+                                            <div id="info-button">
+                                            <i class="fa fa-info"> Click for Information</i>
+                                            </div>
                                         </a>
                                     </div>
 

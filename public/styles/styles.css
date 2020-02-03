@@ -235,16 +235,22 @@ main,header{
   margin: 1%;
 }
 
-/* 76672A */
-/* 8C625B */
-/* E5C3A0 */
-/* 463E26 */
-/* 20B2AA */
+#saved-charities-block {
+  font-size: x-small;
+  max-width: 300px;
+  max-height: 500px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+  margin-right: 40px;
+}
 
-/* #6120B2 97,32,178*/
-/* #B22028 178,32,40*/
-/* #20B2AA 32,178,170*/
-/* #71B220 113,178,32*/
+.card-body .card-text{
+font-size: small;
+}
 
-/* #2071B2 32,113,178 */
-/* #B22071 178,32,113*/
+#info-button {
+  font-size: x-small;
+}

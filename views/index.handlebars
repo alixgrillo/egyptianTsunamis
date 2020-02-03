@@ -5,7 +5,7 @@
     <section id="home">
         <div class="jumbotron jumbotron1">
             <div class="container">
-                <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
+                <a class="btn btn-primary btn-lg" href="views/about" role="button" id="giveButton">Learn More</a>
             </div>
         </div>
         <div class="browse-fdr-category">
@@ -65,9 +65,12 @@
         </div>
     </section>
 
-    <h2>Recommended charities based on {{charities.categoryName}}</h2>
-    <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save This
+    
+    <button class="btn btn-primary btn-lg saveCatBtn" id="saveCategory" data-name="{{charities.categoryName}}" data-id="{{charities.categoryID}}">Save Current
         Category</button>
+        <br>
+        <br>
+        <h2>Recommended charities based on {{charities.categoryName}}</h2>
 
     <div class="card-group">
         {{#each charities}}
