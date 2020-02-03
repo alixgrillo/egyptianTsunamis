@@ -250,9 +250,89 @@ main,header{
   text-align: center;
 }
 
+#info-button {
+  font-size: x-small;
+}
+
+.charityBtn {
+  color: rgb(18, 95, 91);
+  border-radius: 10px;
+  width: 200px;
+  margin: 1%;
+}
+
+.definitionText {
+  font-size: x-small;
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.definition-container {
+  outline: 2px solid rgb(18, 95, 91);
+}
+
+#saved-charities-block {
+  font-size: x-small;
+  max-width: 300px;
+  max-height: 500px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+  margin-right: 40px;
+}
+
+.card-body .card-text{
+font-size: small;
+}
 
 #info-button {
   font-size: x-small;
+}
+
+.card{
+font-size: small;
+border-color: lightseagreen;
+border-width: 2px;
+border-radius: 10px;
+width: 250px;
+margin-bottom: 10px;
+}
+
+.card-block {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.card-title {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(18, 95, 91);
+}
+
+.stars {
+  height: 13px;
+}
+
+.fa {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > div[class*='col-'] {
+ display: flex;
 }
 
 .charityName {
@@ -313,63 +393,4 @@ margin-top: 40px;
 
 #cause-name {
   color: lightseagreen;
-}
-
-.charityBtn{
-  margin: 1%;
-}
-
-#saved-charities-block {
-  font-size: x-small;
-  max-width: 300px;
-  max-height: 500px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-style: oblique;
-  font-size: 20px;
-  font-weight: bold;
-  color: rgb(18, 95, 91);
-  margin-right: 40px;
-}
-
-.card{
-font-size: small;
-border-color: lightseagreen;
-border-width: 2px;
-border-radius: 10px;
-width: 250px;
-margin-bottom: 10px;
-}
-
-.card-block {
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-.card-title {
-  margin-left: 5px;
-  margin-bottom: 10px;
-  margin-top: 0;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-style: oblique;
-  font-size: 15px;
-  font-weight: bold;
-  color: rgb(18, 95, 91);
-}
-
-.stars {
-  height: 13px;
-}
-
-.fa {
-  margin-top: 0;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row > div[class*='col-'] {
- display: flex;
 }
