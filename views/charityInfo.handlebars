@@ -2,39 +2,40 @@
 
     <!-- Home Section -->
     <section id="home">
-        {{!-- <div class="jumbotron">
-            <div class="container">
-                <a class="btn btn-primary btn-lg" href="#" role="button" id="giveButton">Learn More</a>
-            </div>
-        </div> --}}
         <div class="container">
 
-            <h1 class="browse-fdr-category-header dna-h2">{{charityName}}</h1>
+            <h1 class="browse-fdr-category-header dna-h2 charityName">{{charityName}}</h1>
             <div class="row">
                 <div class="col-lg-9">
                     <h2>{{tagLine}}</h2><br>
-                    <p>Mission: {{mission}}</p><br>
-                    <p>Located at: {{city}}, {{state}}</p><br>
-                    <p>Current Rating: {{currentRating}} <img src="{{ratingImg}}" alt="rating-image"></p><br>
-                    <p>Rating published as of {{formatDate ratingDate day="numeric" month="long" year="numeric"}}</p>
-                    <p>Current Score: {{currentScore}}</p><br>
+                    <p class="spacing"><span class="title">Mission: </span>{{mission}}</p>
+                    <p class="spacing"><span class="title">Located at: </span>{{city}}, {{state}}</p>
+                    <p class="spacing"><span class="title">Current Rating: </span>{{currentRating}} <img
+                            src="{{ratingImg}}" alt="rating-image"></p>
+                    <p class="spacing"><span class="title">Current Score: </span>{{currentScore}}</p>
+                    <p class="spacing"><span class="title">Rating published as of
+                        </span>{{formatDate ratingDate day="numeric" month="long" year="numeric"}}</p>
+
                 </div>
                 <div class="col-lg-3">
                     <div class="row">
-                        <button class="btn btn-primary btn-lg charityBtn" id="saveCharity" data-ein="{{ein}}">Save This
+                        <button class="btn btn-outline-info btn-lg charityBtn" id="saveCharity" data-ein="{{ein}}">Save
+                            This
                             Charity</button>
                     </div>
                     <div class="row">
-                        <a class="btn btn-primary btn-lg charityBtn" href="{{websiteURL}}" role="button" id="charityWeb">Visit
+                        <a class="btn btn-outline-info btn-lg charityBtn" href="{{websiteURL}}" role="button"
+                            id="charityWeb">Visit
                             Website</a>
                     </div>
                     <div class="row">
-                        <a class="btn btn-primary btn-lg charityBtn" href="{{charityNavigatorURL}}" role="button"
+                        <a class="btn btn-outline-info btn-lg charityBtn" href="{{charityNavigatorURL}}" role="button"
                             id="charityNavURL">Visit
                             Charity Navigator Website</a>
                     </div>
                     <div class="row">
-                        <a class="btn btn-primary btn-lg charityBtn" href="{{charityEmail}}" role="button" id="contact">Contact
+                        <a class="btn btn-outline-info btn-lg charityBtn" href="{{charityEmail}}" role="button"
+                            id="contact">Contact
                             Charity</a>
                     </div>
 
@@ -66,43 +67,41 @@
                     <canvas id="expenses"></canvas>
                 </div>
             </div>
-            <div class="row">
-                <h4>Definitions</h4>
-                <br>
-                <p><span class="definitions">Total Contributions: </span>Total contributions is
+            <br>
+            <div class="container definition-container">
+                {{!-- <div class="row"> --}}
+                <p id="definition-title">Definitions</p>
+                <p class="definitionText"><span class="definitions">Total Contributions: </span>Total contributions is
                     the sum of all contributions - including gifts, and grants, federated campaigns,
                     membership dues, fundraising events, related organizations, and government grants.</p>
-                <p><span class="definitions">Total Revenue: </span>Total revenue, as reported on
+                <p class="definitionText"><span class="definitions">Total Revenue: </span>Total revenue, as reported on
                     the income statement for the rating period. Charities can derive revenue or
                     funding from a variety of sources, including contributions, program services,
                     membership dues, interest on savings, investment income, special events, and
                     sales of inventory.</p>
-                <p><span class="definitions">Total Expenses: </span>Total functional expenses,
+                <p class="definitionText"><span class="definitions">Total Expenses: </span>Total functional expenses,
                     computed as the sum of program expenses, administrative expenses and fundraising
                     expenses, as reported on the income statement for the rating period.</p>
-                <p><span class="definitions">Program Expenses: </span>This measure reflects the
+                <p class="definitionText"><span class="definitions">Program Expenses: </span>This measure reflects the
                     percent of its total expenses a charity spends on the programs and services it
                     exists to deliver.</p>
-                <p><span class="definitions">Fundraising Expenses: </span>This measure reflects
+                <p class="definitionText"><span class="definitions">Fundraising Expenses: </span>This measure reflects
                     what a charity spends to raise money. Fundraising expenses can include campaign
                     printing, publicity, mailing, and staffing and costs incurred in soliciting
                     donations, memberships, and grants.</p>
-                <p><span class="definitions">Administrative Expenses: </span>As reported by
+                <p class="definitionText"><span class="definitions">Administrative Expenses: </span>As reported by
                     charities on their IRS Form 990, this measure reflects what percent of its
                     total budget a charity spends on overhead, administrative staff and associated
                     costs, and organizational meetings.</p>
-
             </div>
         </div>
+</div>
 
-
-
-    </section>
+</section>
 <br>
 </div>
 
-
-<h2>Recommended charities with the same cause ({{causeName}})</h2>
+<h2 id="recommended-caused">Recommended charities with the same cause: <span id="cause-name">({{causeName}})</span></h2>
 <div class="card-group">
     {{#each charities}}
     <div class="card" id="charity-cards">
