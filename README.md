@@ -18,19 +18,19 @@ This is a full stack deployed website that allows the user login via oAuth throu
 ## Functionality
 The user will start on the landing page. 
 
-<img src="/assets/images/login.gif">
+<img src="public/assets/images/login.gif">
 
 They can view some intial charities without a category filter By logging in, the user will be able to save categories and charities to their profile.
 
-<img src="/assets/images/category.gif">
+<img src="public/assets/images/category.gif">
 
 If a user wants to filter on a category, they can click on one to get the highest rated charities in that category.
 
-<img src="/assets/images/charity.gif">
+<img src="public/assets/images/charity.gif">
 
 By clicking on more information for any charity, it will display a charity-specific page that gives more detail about the charity, including the mission, expenses, revenue, and location.
 
-<img src="/assets/images/profile.gif">
+<img src="public/assets/images/profile.gif">
 
 The user can save a category and a charity and it will display on their profile page for their immediate use.
 
