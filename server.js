@@ -30,7 +30,7 @@ app.set("view engine", "handlebars");
 // Middleware
 app.use(
   cookieSession({
-    maxAge: 60 * 1000,
+    maxAge: 60 * 1000 * 10,
     keys: [keys.session.cookieKey]
   })
 );
